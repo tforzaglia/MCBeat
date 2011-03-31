@@ -10,6 +10,7 @@ public class Music
   	TargetDataLine targetDataLine;
   	AudioInputStream audioInputStream;
   	SourceDataLine sourceDataLine;
+	Vector<ByteArrayOutputStream> Tracks = new Vector<ByteArrayOutputStream>();
 
 	// captures audio input from a microphone and saves it in a ByteArrayOutputStream object.
   	private void captureAudio()
@@ -92,6 +93,10 @@ public class Music
         				}
       				}
       				byteArrayOutputStream.close();
+				
+				// add track to vector of all tracks
+				Tracks.add( byteArrayOutputStream );
+
     			}catch (Exception e) {
       				System.out.println(e);
       				System.exit(0);
