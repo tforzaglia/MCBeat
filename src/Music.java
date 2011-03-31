@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.Vector;
+
 import javax.sound.sampled.*;
 
 public class Music
