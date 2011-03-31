@@ -95,7 +95,7 @@ public class Music
       				byteArrayOutputStream.close();
 				
 				// add track to vector of all tracks
-				Tracks.add( byteArrayOutputStream );
+			//	Tracks.add( byteArrayOutputStream );
 
     			}catch (Exception e) {
       				System.out.println(e);
