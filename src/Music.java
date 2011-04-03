@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.Vector;
-
+import java.util.Scanner;
 import javax.sound.sampled.*;
 
 public class Music
@@ -13,6 +13,7 @@ public class Music
   	AudioInputStream audioInputStream;
   	SourceDataLine sourceDataLine;
 	Vector<ByteArrayOutputStream> Tracks = new Vector<ByteArrayOutputStream>();
+	Vector<String>TrackNames = new Vector<String>();
 
 	// captures audio input from a microphone and saves it in a ByteArrayOutputStream object.
   	private void captureAudio()
@@ -94,10 +95,20 @@ public class Music
           					byteArrayOutputStream.write( tempBuffer, 0, count );
         				}
       				}
-      				byteArrayOutputStream.close();
 				
-				// add track to vector of all tracks
-			//	Tracks.add( byteArrayOutputStream );
+      				Scanner scan = new Scanner(System.in);
+      				System.out.println("Name the track");
+      				String name = scan.next();
+      				
+				//add track name to string array
+				TrackNames.add(name);
+      				System.out.println(TrackNames);
+
+				// add audio data to track array
+	  			Tracks.add( byteArrayOutputStream );
+      				
+				byteArrayOutputStream.close();
+				
 
     			}catch (Exception e) {
       				System.out.println(e);
