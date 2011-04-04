@@ -5,8 +5,8 @@ import javax.sound.sampled.*;
 
 public class Music
 {
-	boolean stopCapture = false;
-  	boolean pause = false;
+	public boolean stopCapture = false;
+  	public boolean pause = false;
   	ByteArrayOutputStream byteArrayOutputStream;
   	AudioFormat audioFormat;
   	TargetDataLine targetDataLine;
