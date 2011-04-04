@@ -16,7 +16,7 @@ public class Music
 	Vector<String>TrackNames = new Vector<String>();
 
 	// captures audio input from a microphone and saves it in a ByteArrayOutputStream object.
-  	private void captureAudio()
+  	public void captureAudio()
 	{
     		try{
       			// Get everything set up for capture
@@ -36,7 +36,7 @@ public class Music
   	}
 	
 	// plays back the audio data that has been saved in the ByteArrayOutputStream
-  	private void playAudio() 
+  	public void playAudio() 
 	{
     		try{
       			// Get everything set up for playback.
@@ -65,7 +65,7 @@ public class Music
   	}
 
 	// creates and returns an AudioFormat object 
-  	private AudioFormat getAudioFormat()
+  	public AudioFormat getAudioFormat()
 	{
     		float sampleRate = 8000.0F;
     		int sampleSizeInBits = 16;
@@ -100,11 +100,11 @@ public class Music
       				System.out.println("Name the track");
       				String name = scan.next();
       				
-				//add track name to string array
+				//add track name to string vector
 				TrackNames.add(name);
       				System.out.println(TrackNames);
 
-				// add audio data to track array
+				// add audio data to track vector
 	  			Tracks.add( byteArrayOutputStream );
       				
 				byteArrayOutputStream.close();
