@@ -1,8 +1,8 @@
 //Beat Main
-import java.awt.Frame;
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
+//import java.awt.Frame;
+//import java.awt.Menu;
+//import java.awt.MenuBar;
+//import java.awt.MenuItem;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
@@ -18,14 +18,18 @@ public class Beat_Main implements WindowListener {
 	 */
 	public static void main(String[] args) {
 		
-		Frame f = new Frame("MCBE@");
+		JFrame f = new JFrame("MCBE@");
 		PlayerCanvas PC = new PlayerCanvas(); //Canvas for frame
 		
-		MenuBar menuBar = new MenuBar();
-		f.setMenuBar(menuBar);
-		Menu fileMenu = new Menu("File");
+		JMenuBar menuBar = new JMenuBar();
+		f.setJMenuBar(menuBar);
+		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-		MenuItem exit = new MenuItem("Exit");
+		JMenuItem saveFile = new JMenuItem("Save File...");
+		fileMenu.add(saveFile);
+		JMenuItem openFile = new JMenuItem("Open File...");
+		fileMenu.add(openFile);
+		JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(new CloseWindow());
 		fileMenu.add(exit);
 		
