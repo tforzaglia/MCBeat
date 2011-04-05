@@ -1,8 +1,3 @@
-//Beat Main
-//import java.awt.Frame;
-//import java.awt.Menu;
-//import java.awt.MenuBar;
-//import java.awt.MenuItem;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
