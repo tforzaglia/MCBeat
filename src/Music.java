@@ -6,7 +6,7 @@ import javax.sound.sampled.*;
 public class Music
 {
 	public boolean stopCapture = false;
-  	public boolean pause = false;
+  	public boolean paused = false;
   	ByteArrayOutputStream byteArrayOutputStream;
   	AudioFormat audioFormat;
   	TargetDataLine targetDataLine;
@@ -56,9 +56,8 @@ public class Music
       			// Create a thread to play back the data 
       			Thread playThread = new Thread( new PlayThread() );
       			playThread.start();
-      			/*if(pause)
-       				playThread.interrupt();*/
-    		} catch (Exception e) {
+    		
+		} catch (Exception e) {
       			System.out.println(e);
       			System.exit(0);
     			}
@@ -132,7 +131,7 @@ public class Music
       				//Keep looping until the input read method returns -1 for empty stream.
       				while(( count = audioInputStream.read( tempBuffer, 0, tempBuffer.length ) ) != -1 )
 				{
-        				if( count > 0 )
+        				if( count > 0 && !paused )// maybe need to use sourceDataLine.stop() to be able to resume in same spot
 					{
           					//Write data to the internal buffer of the data line
           					sourceDataLine.write( tempBuffer, 0, count );
