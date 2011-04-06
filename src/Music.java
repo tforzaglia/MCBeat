@@ -12,9 +12,9 @@ public class Music
   	TargetDataLine targetDataLine;
   	AudioInputStream audioInputStream;
   	SourceDataLine sourceDataLine;
-	Vector<ByteArrayOutputStream> Tracks = new Vector<ByteArrayOutputStream>();
+	Vector<ByteArrayOutputStream> Audio = new Vector<ByteArrayOutputStream>();
 	Vector<String>TrackNames = new Vector<String>();
-
+	Vector<Track> Tracks = new Vector<Track>();
 	// captures audio input from a microphone and saves it in a ByteArrayOutputStream object.
   	public void captureAudio()
 	{
@@ -104,9 +104,12 @@ public class Music
 				TrackNames.add(name);
       				System.out.println(TrackNames);
 
-				// add audio data to track vector
-	  			Tracks.add( byteArrayOutputStream );
+				// add audio data to audio vector
+	  			Audio.add( byteArrayOutputStream );
       				
+				Track t = new Track( name, byteArrayOutputStream );
+				Tracks.add( t );
+
 				byteArrayOutputStream.close();
 				
 
