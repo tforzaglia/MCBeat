@@ -45,6 +45,7 @@ public class Beat_Main implements WindowListener {
 	    JButton playButton = new JButton("Play");
 	    JButton stopRecButton = new JButton("Stop Record");
 		JButton recordButton = new JButton("Record");
+		JButton pauseButton = new JButton("Pause");
 		
 		playButton.addActionListener(new playButtonActionListener(recorder));
 		stopRecButton.addActionListener(new stopRecButtonActionListener(recorder));
@@ -55,6 +56,7 @@ public class Beat_Main implements WindowListener {
 		content.add(stopRecButton);
 		content.add(recordButton);
 		content.add(playButton);
+		content.add(pauseButton);
 		
 		
 	
