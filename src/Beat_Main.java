@@ -50,6 +50,7 @@ public class Beat_Main implements WindowListener {
 		playButton.addActionListener(new playButtonActionListener(recorder));
 		stopRecButton.addActionListener(new stopRecButtonActionListener(recorder));
 		recordButton.addActionListener(new recordButtonActionListener(recorder));
+		pauseButton.addActionListener(new pauseButtonActionListener(recorder));
 
 
 		
