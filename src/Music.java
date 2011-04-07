@@ -15,6 +15,7 @@ public class Music
 	Vector<ByteArrayOutputStream> Audio = new Vector<ByteArrayOutputStream>();
 	Vector<String>TrackNames = new Vector<String>();
 	Vector<Track> Tracks = new Vector<Track>();
+	
 	// captures audio input from a microphone and saves it in a ByteArrayOutputStream object.
   	public void captureAudio()
 	{
@@ -69,11 +70,27 @@ public class Music
     		float sampleRate = 8000.0F;
     		int sampleSizeInBits = 16;
     		int channels = 1;
-    		boolean signed = true;
+    		boolean isSigned = true;
     		boolean bigEndian = false;
-    		return new AudioFormat( sampleRate, sampleSizeInBits, channels, signed, bigEndian);
+    		return new AudioFormat( sampleRate, sampleSizeInBits, channels, isSigned, bigEndian);
   	}
+	
+	public void stopRecord()
+	{
+		boolean stopCapture = true;
+	}
 
+	public void pausePlayback()
+	{
+		boolean paused = true;
+	}
+
+	public void resumePlay()
+	{
+		boolean paused = false;
+	}
+	
+	
 	//Inner class to capture data from microphone
 	class CaptureThread extends Thread
 	{
