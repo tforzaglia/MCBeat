@@ -7,11 +7,13 @@ public class Music
 {
 	public boolean stopCapture = false;
   	public boolean paused = false;
-  	ByteArrayOutputStream byteArrayOutputStream;
+  	
+	ByteArrayOutputStream byteArrayOutputStream;
   	AudioFormat audioFormat;
   	TargetDataLine targetDataLine;
   	AudioInputStream audioInputStream;
   	SourceDataLine sourceDataLine;
+	
 	Vector<ByteArrayOutputStream> Audio = new Vector<ByteArrayOutputStream>();
 	Vector<String>TrackNames = new Vector<String>();
 	Vector<Track> Tracks = new Vector<Track>();
@@ -75,19 +77,19 @@ public class Music
     		return new AudioFormat( sampleRate, sampleSizeInBits, channels, isSigned, bigEndian);
   	}
 	
-	public void stopRecord()
+	public void stopRecording()
 	{
-		boolean stopCapture = true;
+		stopCapture = true;
 	}
 
 	public void pausePlayback()
 	{
-		boolean paused = true;
+		 paused = true;
 	}
 
 	public void resumePlay()
 	{
-		boolean paused = false;
+		 paused = false;
 	}
 	
 	
