@@ -16,7 +16,7 @@ public class Music
 	
 	Vector<ByteArrayOutputStream> Audio = new Vector<ByteArrayOutputStream>();
 	Vector<String>TrackNames = new Vector<String>();
-	Vector<Track> Tracks = new Vector<Track>();
+	//Vector<Track> Tracks = new Vector<Track>();
 	
 	// captures audio input from a microphone and saves it in a ByteArrayOutputStream object.
   	public void captureAudio()
@@ -123,10 +123,10 @@ public class Music
       				System.out.println(TrackNames);
 
 				// add audio data to audio vector
-	  			Audio.add( byteArrayOutputStream );
+	  			//Audio.add( byteArrayOutputStream );
       				
-				Track t = new Track( name, byteArrayOutputStream );
-				Tracks.add( t );
+				//Track t = new Track( name, byteArrayOutputStream );
+				//Tracks.add( t );
 
 				byteArrayOutputStream.close();
 				
@@ -141,6 +141,17 @@ public class Music
 	//Inner class to play back the data that was saved.
 	class PlayThread extends Thread
 	{
+                Vector<Byte> buffer1 = new Vector<Byte>();
+		Vector<Byte> buffer2 = new Vector<Byte>();
+		Vector<Byte> buffer3 = new Vector<Byte>();
+		Vector<Byte> buffer4 = new Vector<Byte>();
+		
+		boolean b1 = false;
+		boolean b2 = false;
+		boolean b3 = false;
+		boolean b4 = false;
+		
+		Track[] tracks = new Track[4];
   		byte tempBuffer[] = new byte[10000];
 
   		public void run()
