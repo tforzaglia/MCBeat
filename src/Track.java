@@ -2,16 +2,17 @@ import java.util.Vector;
 
 public class Track {
 	
-	//private String name;
 	//private ByteArrayOutputStream audio;
 	
 	private Vector<Byte> data = new Vector<Byte>();
 	private boolean enable = false;
+	private String name;
 	
-	public Track( Vector<Byte> data, boolean enable)
+	public Track( Vector<Byte> data, boolean enable, String name )
 	{
 		this.data = data;
-		this.enable = false;
+		this.setEnable(false);
+		this.name = name;
 		//volume
 	}
 	
@@ -27,29 +28,26 @@ public class Track {
 	
 	public void enableTrack()
 	{
-		this.enable = true;
-	}
-	
-	/*
-	public Track( String name, ByteArrayOutputStream audio )
-	{	
-		this.name = name;
-		this.audio = audio;
+		this.setEnable(true);
 	}
 	
 	public String getName()
 	{
 		return name;
 	}
-	*/
-	
-	
-	
-	
-	
+
+	public void setEnable(boolean enable) 
+	{
+		this.enable = enable;
+	}
+
+	public boolean isEnable() 
+	{
+		return enable;
+	}
+		
 }
 
 //get set data 
 //get set volume
 //set enabled
-//take from each buffer and average 
