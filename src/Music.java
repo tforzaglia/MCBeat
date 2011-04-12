@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.Vector;
-import java.util.Scanner;
 import javax.sound.sampled.*;
 
 public class Music
@@ -30,7 +29,7 @@ public class Music
       			targetDataLine.start();
 
       			// Create a thread to capture the microphone data and start it  
-      			Thread captureThread = new Thread( new CaptureThread() );
+      			Thread captureThread = new CaptureThread(byteArrayOutputStream, targetDataLine, this);
       			captureThread.start();
        		} catch (Exception e) {
 			System.out.println(e);
@@ -57,7 +56,7 @@ public class Music
       			sourceDataLine.start();
 
       			// Create a thread to play back the data 
-      			Thread playThread = new Thread( new PlayThread() );
+      			Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
       			playThread.start();
     		
 		} catch (Exception e) {
@@ -92,90 +91,6 @@ public class Music
 		 paused = false;
 	}
 	
-	
-	//Inner class to capture data from microphone
-	class CaptureThread extends Thread
-	{
-		byte tempBuffer[] = new byte[10000];
-  		public void run()
-		{
-  			byteArrayOutputStream = new ByteArrayOutputStream();
-    			stopCapture = false;
-    			try{
-    				//Loop until stopCapture is set by another thread 
-      				while( !stopCapture )
-				{
-        				//Read data from the internal buffer of the data line.
-        				int count = targetDataLine.read( tempBuffer, 0, tempBuffer.length );
-        				if( count > 0 )
-        				{
-          					//Save data in output stream object.
-          					byteArrayOutputStream.write( tempBuffer, 0, count );
-        				}
-      				}
-				
-      				Scanner scan = new Scanner(System.in);
-      				System.out.println("Name the track");
-      				String name = scan.next();
-      				
-				//add track name to string vector
-				TrackNames.add(name);
-      				System.out.println(TrackNames);
-
-				// add audio data to audio vector
-	  			//Audio.add( byteArrayOutputStream );
-      				
-				//Track t = new Track( name, byteArrayOutputStream );
-				//Tracks.add( t );
-
-				byteArrayOutputStream.close();
-				
-
-    			}catch (Exception e) {
-      				System.out.println(e);
-      				System.exit(0);
-    					}
-  		}
-	}
-
-	//Inner class to play back the data that was saved.
-	class PlayThread extends Thread
-	{
-                Vector<Byte> buffer1 = new Vector<Byte>();
-		Vector<Byte> buffer2 = new Vector<Byte>();
-		Vector<Byte> buffer3 = new Vector<Byte>();
-		Vector<Byte> buffer4 = new Vector<Byte>();
-		
-		boolean b1 = false;
-		boolean b2 = false;
-		boolean b3 = false;
-		boolean b4 = false;
-		
-		Track[] tracks = new Track[4];
-  		byte tempBuffer[] = new byte[10000];
-
-  		public void run()
-		{
-    			try{
-      				int count;
-      				//Keep looping until the input read method returns -1 for empty stream.
-      				while(( count = audioInputStream.read( tempBuffer, 0, tempBuffer.length ) ) != -1 )
-				{
-        				if( count > 0 && !paused )// maybe need to use sourceDataLine.stop() to be able to resume in same spot
-					{
-          					//Write data to the internal buffer of the data line
-          					sourceDataLine.write( tempBuffer, 0, count );
-        				}
-      				}
-      				//Block and wait for internal buffer of the data line to empty.
-      				sourceDataLine.drain();
-      				sourceDataLine.close();
-    			}catch (Exception e) {
-      				System.out.println(e);
-      				System.exit(0);
-    				}
-  		}
-	}
 }
 	
 	
