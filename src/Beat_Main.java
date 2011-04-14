@@ -1,4 +1,4 @@
-package mcbeat;
+
 
 import java.awt.Color;
 import java.awt.Container;

@@ -10,6 +10,7 @@ public class playAllButtonActionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-    		m.playTogether = true;                                    
+    		m.playTogether = true;
+    		m.playAudio();
 	}
 }
