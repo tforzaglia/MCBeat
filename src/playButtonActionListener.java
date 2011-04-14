@@ -9,6 +9,7 @@ public class playButtonActionListener implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+                m.paused = false;
 		m.playAudio();
 
 	}
