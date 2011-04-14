@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.BoxLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -44,11 +45,11 @@ public class Beat_Main implements WindowListener {
         content.setBackground(Color.white);
         content.setLayout(new FlowLayout());
 
-        JButton playButton = new JButton("Play");
-        JButton stopRecButton = new JButton("Stop Record");
-        JButton recordButton = new JButton("Record");
-        JButton pauseButton = new JButton("Pause");
-        JButton playAllButton = new JButton("Play All");
+        JButton playButton = new JButton(new ImageIcon("play.png"));
+        JButton stopRecButton = new JButton(new ImageIcon("stop.png"));
+        JButton recordButton = new JButton(new ImageIcon("record.png"));
+        JButton pauseButton = new JButton(new ImageIcon("pause.png"));
+        JButton playAllButton = new JButton(new ImageIcon("playAll.png"));
 
         playButton.addActionListener(new playButtonActionListener(recorder));
         stopRecButton.addActionListener(new stopRecButtonActionListener(recorder));
