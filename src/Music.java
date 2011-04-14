@@ -68,7 +68,7 @@ public class Music
       			padWith0s(audioData3);
       			padWith0s(audioData4);
       		*/	
-      			if( numRecs == 2)
+      			if( numRecs == 2 && !playTogether )
       			{		
 				    // Get an input stream on the byte array containing the data
 	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData1 );
@@ -84,7 +84,7 @@ public class Music
 	      			Thread playThread = new PlayThread(audioInputStream1, sourceDataLine, this);
 	      			playThread.start();
       			}
-      			else if( numRecs == 3)
+      			else if( numRecs == 3 && !playTogether )
       			{		
 				    // Get an input stream on the byte array containing the data
 	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData2 );
@@ -100,7 +100,7 @@ public class Music
 	      			Thread playThread = new PlayThread(audioInputStream2, sourceDataLine, this);
 	      			playThread.start();
       			}
-      			else if( numRecs == 4)
+      			else if( numRecs == 4 && !playTogether )
       			{		
 				    // Get an input stream on the byte array containing the data
 	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData3 );
@@ -116,7 +116,7 @@ public class Music
 	      			Thread playThread = new PlayThread(audioInputStream3, sourceDataLine, this);
 	      			playThread.start();
       			}
-      			else if( numRecs == 5)
+      			else if( numRecs == 5 && !playTogether )
       			{		
 				    // Get an input stream on the byte array containing the data
 	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData4 );
@@ -188,18 +188,18 @@ public class Music
 				mixedOutput[i] = (byte)(buff1[i] + buff2[i] + buff3[i] + buff4[i]);
 			}
 			// Get an input stream on the byte array containing the data
-	      	InputStream byteArrayInputStream = new ByteArrayInputStream( mixedOutput );
-	      	AudioFormat audioFormat = getAudioFormat();
-	      	audioInputStream = new AudioInputStream( byteArrayInputStream, audioFormat,
+	      		InputStream byteArrayInputStream = new ByteArrayInputStream( mixedOutput );
+	      		AudioFormat audioFormat = getAudioFormat();
+	      		audioInputStream = new AudioInputStream( byteArrayInputStream, audioFormat,
 				mixedOutput.length/audioFormat.getFrameSize());
-	      	DataLine.Info dataLineInfo = new DataLine.Info( SourceDataLine.class, audioFormat );
-	      	sourceDataLine = (SourceDataLine) AudioSystem.getLine( dataLineInfo );
-	     	sourceDataLine.open( audioFormat );
-	      	sourceDataLine.start();
+	      		DataLine.Info dataLineInfo = new DataLine.Info( SourceDataLine.class, audioFormat );
+	      		sourceDataLine = (SourceDataLine) AudioSystem.getLine( dataLineInfo );
+	     		sourceDataLine.open( audioFormat );
+	      		sourceDataLine.start();
 	
-	      	// Create a thread to play back the data 
-	      	Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
-	      	playThread.start();
+	      		// Create a thread to play back the data 
+	      		Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
+	      		playThread.start();
 /*												
 			//Keep looping until the input read method returns -1 for empty stream.
 	  		while(( count = audioInputStream.read( mixedOutput, 0, mixedOutput.length ) ) != -1 )
@@ -213,11 +213,11 @@ public class Music
 				//Block and wait for internal buffer of the data line to empty.
 	  			sourceDataLine.drain();
 	  			sourceDataLine.close();*/
-	  		}catch (Exception e) {
-	  			System.out.println(e);
-	  			System.exit(0);
-				}
-		}
+	  	}catch (Exception e) {
+	  		System.out.println(e);
+	  		System.exit(0);
+			}
+	}
 }
 	
 	
