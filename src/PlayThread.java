@@ -6,11 +6,8 @@ import java.util.Vector;
 public class PlayThread extends Thread {
 	
 		byte[] buffer = new byte[10000];
-		/*byte[] buffer1 = new byte[10000];
-		byte[] buffer2 = new byte[10000];
-		byte[] buffer3 = new byte[10000];
-		byte[] buffer4 = new byte[10000]; 
-		*/	
+		byte[] mixedBuffer = new byte[10000];
+	
 		AudioInputStream audioInputStream;
 		SourceDataLine sourceDataLine;
 		Music music;
@@ -43,12 +40,12 @@ public class PlayThread extends Thread {
 	 			if(music.playTogether)
 	  			{
 					//Keep looping until the input read method returns -1 for empty stream.
-	  				while(( count = audioInputStream.read( music.mixedOutput, 0, music.mixedOutput.length ) ) != -1 )
+	  				while(( count = audioInputStream.read( mixedBuffer, 0, mixedBuffer.length ) ) != -1 )
 	  				{
 	    					if( count > 0 && !music.paused )
 	    					{
 	      						//Write data to the internal buffer of the data line
-	      						sourceDataLine.write( music.mixedOutput, 0, count );
+	      						sourceDataLine.write( mixedBuffer, 0, count );
 	    					}
 	  				}
 	
