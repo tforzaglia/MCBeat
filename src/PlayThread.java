@@ -55,7 +55,7 @@ public class PlayThread extends Thread {
 					music.playTogether = false;
 	  			}				
 			}catch (Exception e) {
-  				System.out.println(e);
+  				e.printStackTrace();
   				System.exit(0);
 				}
 		}
