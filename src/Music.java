@@ -23,7 +23,6 @@ public class Music
   	AudioInputStream audioInputStream3;
   	AudioInputStream audioInputStream4;
   	
-  	byte[] mixedOutput = new byte[10000];
   	int numRecs = 1;
   	
 	Vector<String>TrackNames = new Vector<String>();
@@ -43,7 +42,7 @@ public class Music
       			Thread captureThread = new CaptureThread(byteArrayOutputStream1, targetDataLine, this);
       			captureThread.start();
        		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
       			System.exit(0);
     			}
   	}
@@ -61,7 +60,7 @@ public class Music
  		padWith0s(audioData3);
  		padWith0s(audioData4);
   		
-                try{
+        try{
     			audioData1 = byteArrayOutputStream1.toByteArray();
     			audioData2 = byteArrayOutputStream2.toByteArray();
     			audioData3 = byteArrayOutputStream3.toByteArray();
@@ -134,7 +133,7 @@ public class Music
       			else if( playTogether )
       				playTogether(audioData1, audioData2, audioData4, audioData4 );     				
 		} catch (Exception e) {
-      			System.out.println(e);
+      			e.printStackTrace();
       			System.exit(0);
     			}
   	}
@@ -179,8 +178,10 @@ public class Music
 	public void playTogether(byte[] buff1, byte[] buff2, byte[] buff3, byte[] buff4)
 	{
 		try{
+			byte[] mixedOutput = new byte[10000];
 			int count;
-			//padWith0s(mixedOutput);
+			
+			padWith0s(mixedOutput);
 			for(int i = 0; i<10000; i++)
 			{
 				//add elements of all 4 track buffers track1[0]+track2[0]+track3[0]+track4[0]and so on for all elements of the arrays
@@ -199,19 +200,6 @@ public class Music
 	      		// Create a thread to play back the data 
 	      		Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
 	      		playThread.start();
-/*												
-			//Keep looping until the input read method returns -1 for empty stream.
-	  		while(( count = audioInputStream.read( mixedOutput, 0, mixedOutput.length ) ) != -1 )
-	  		{
-	    		if( count > 0 && !paused )// maybe need to use sourceDataLine.stop() to be able to resume in same spot
-	    		{
-	      				//Write data to the internal buffer of the data line
-	      				sourceDataLine.write( mixedOutput, 0, count );
-	    		}
-	  		}		
-				//Block and wait for internal buffer of the data line to empty.
-	  			sourceDataLine.drain();
-	  			sourceDataLine.close();*/
 	  	}catch (Exception e) {
 	  		e.printStackTrace();
 	  		System.exit(0);	
