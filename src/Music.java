@@ -61,12 +61,12 @@ public class Music
  		padWith0s(audioData3);
  		padWith0s(audioData4);
   		
-
+                try{
     			audioData1 = byteArrayOutputStream1.toByteArray();
     			audioData2 = byteArrayOutputStream2.toByteArray();
     			audioData3 = byteArrayOutputStream3.toByteArray();
     			audioData4 = byteArrayOutputStream4.toByteArray();
-	try{
+	
       			if( numRecs == 2 && !playTogether )
       			{		
 				    // Get an input stream on the byte array containing the data
@@ -180,7 +180,7 @@ public class Music
 	{
 		try{
 			int count;
-			padWith0s(mixedOutput);
+			//padWith0s(mixedOutput);
 			for(int i = 0; i<10000; i++)
 			{
 				//add elements of all 4 track buffers track1[0]+track2[0]+track3[0]+track4[0]and so on for all elements of the arrays
