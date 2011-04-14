@@ -43,19 +43,19 @@ public class Beat_Main implements WindowListener {
         Container content = f.getContentPane();
         content.setBackground(Color.white);
         content.setLayout(new FlowLayout());
-/*
+
         JButton playButton = new JButton(new ImageIcon("play.png"));
         JButton stopRecButton = new JButton(new ImageIcon("stop.png"));
         JButton recordButton = new JButton(new ImageIcon("record.png"));
         JButton pauseButton = new JButton(new ImageIcon("pause.png"));
         JButton playAllButton = new JButton(new ImageIcon("playAll.png"));
-*/
 
-        JButton playButton = new JButton("play");
-        JButton stopRecButton = new JButton("stop");
-        JButton recordButton = new JButton("record");
-        JButton pauseButton = new JButton("pause");
-        JButton playAllButton = new JButton("playAll");
+
+//        JButton playButton = new JButton("play");
+//        JButton stopRecButton = new JButton("stop");
+//        JButton recordButton = new JButton("record");
+//        JButton pauseButton = new JButton("pause");
+//        JButton playAllButton = new JButton("playAll");
 
         playButton.addActionListener(new playButtonActionListener(recorder));
         stopRecButton.addActionListener(new stopRecButtonActionListener(recorder));
