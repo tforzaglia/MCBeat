@@ -51,28 +51,22 @@ public class Music
 	// plays back the audio data that has been saved in the ByteArrayOutputStream
   	public void playAudio() 
 	{
-    		try{
-    			byte[] audioData1 = new byte[10000];
-    			byte[] audioData2 = new byte[10000];
-    			byte[] audioData3 = new byte[10000];
-    			byte[] audioData4 = new byte[10000];
+  		byte[] audioData1 = new byte[10000];
+  		byte[] audioData2 = new byte[10000];
+  		byte[] audioData3 = new byte[10000];
+  		byte[] audioData4 = new byte[10000];
+  		
+  		padWith0s(audioData1);
+ 		padWith0s(audioData2);
+ 		padWith0s(audioData3);
+ 		padWith0s(audioData4);
+  		
 
-    			padWith0s(audioData1);
-      			padWith0s(audioData2);
-      			padWith0s(audioData3);
-      			padWith0s(audioData4);
-
-      			// Get the previously saved data into a byte array object
-      			audioData1 = byteArrayOutputStream1.toByteArray();
-      			audioData2 = byteArrayOutputStream2.toByteArray();
-      			audioData3 = byteArrayOutputStream3.toByteArray();
-      			audioData4 = byteArrayOutputStream4.toByteArray();
-      			
-      		/*	padWith0s(audioData1);
-      			padWith0s(audioData2);
-      			padWith0s(audioData3);
-      			padWith0s(audioData4);
-      		*/	
+    			audioData1 = byteArrayOutputStream1.toByteArray();
+    			audioData2 = byteArrayOutputStream2.toByteArray();
+    			audioData3 = byteArrayOutputStream3.toByteArray();
+    			audioData4 = byteArrayOutputStream4.toByteArray();
+	try{
       			if( numRecs == 2 && !playTogether )
       			{		
 				    // Get an input stream on the byte array containing the data
@@ -186,7 +180,7 @@ public class Music
 	{
 		try{
 			int count;
-			//padWith0s(mixedOutput);
+			padWith0s(mixedOutput);
 			for(int i = 0; i<10000; i++)
 			{
 				//add elements of all 4 track buffers track1[0]+track2[0]+track3[0]+track4[0]and so on for all elements of the arrays
@@ -219,9 +213,9 @@ public class Music
 	  			sourceDataLine.drain();
 	  			sourceDataLine.close();*/
 	  	}catch (Exception e) {
-	  		System.out.println(e);
-	  		System.exit(0);
-			}
+	  		e.printStackTrace();
+	  		System.exit(0);	
+		}
 	}
 }
 	

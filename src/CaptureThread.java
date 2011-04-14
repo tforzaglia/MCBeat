@@ -23,10 +23,17 @@ public class CaptureThread extends Thread {
 		
 		public void run()
 		{
+			
+			music.padWith0s(buffer1);
+  			music.padWith0s(buffer2);
+  			music.padWith0s(buffer3);
+  			music.padWith0s(buffer4);
+  			
 			music.byteArrayOutputStream1 = new ByteArrayOutputStream();
 			music.byteArrayOutputStream2 = new ByteArrayOutputStream();
 			music.byteArrayOutputStream3 = new ByteArrayOutputStream();
 			music.byteArrayOutputStream4 = new ByteArrayOutputStream();
+			
 			music.stopCapture = false;
 				
 			try{
