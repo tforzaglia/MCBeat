@@ -25,37 +25,38 @@ public class PlayThread extends Thread {
 		{
 			try{
 	  			int count;
-	  				if(!music.playTogether)
-	  				{
-		  			    //Keep looping until the input read method returns -1 for empty stream.
-	  					while(( count = audioInputStream.read( buffer, 0, buffer.length ) ) != -1 )
-	  					{
+	  			if(!music.playTogether)
+	  			{
+		  		    //Keep looping until the input read method returns -1 for empty stream.
+	  				while(( count = audioInputStream.read( buffer, 0, buffer.length ) ) != -1 )
+					{
 	    					if( count > 0 && !music.paused )
-	    					{
+	    			 		{
 	      						//Write data to the internal buffer of the data line
 	      						sourceDataLine.write( buffer, 0, count );
 	    					}
-	  					}						
-	  					//Block and wait for internal buffer of the data line to empty.
-	  					sourceDataLine.drain();
-	  					sourceDataLine.close();
-	  				}
-	  				if(music.playTogether)
+	  				}						
+	  				//Block and wait for internal buffer of the data line to empty.
+	  				sourceDataLine.drain();
+	  				sourceDataLine.close();
+	  			}
+	 			if(music.playTogether)
+	  			{
+					//Keep looping until the input read method returns -1 for empty stream.
+	  				while(( count = audioInputStream.read( music.mixedOutput, 0, music.mixedOutput.length ) ) != -1 )
 	  				{
-		  			    //Keep looping until the input read method returns -1 for empty stream.
-	  					while(( count = audioInputStream.read( music.mixedOutput, 0, music.mixedOutput.length ) ) != -1 )
-	  					{
 	    					if( count > 0 && !music.paused )
 	    					{
 	      						//Write data to the internal buffer of the data line
 	      						sourceDataLine.write( music.mixedOutput, 0, count );
 	    					}
-	  					}
+	  				}
 	
-	  					//Block and wait for internal buffer of the data line to empty.
-	  					sourceDataLine.drain();
-	  					sourceDataLine.close();
-	  				}				
+	 				//Block and wait for internal buffer of the data line to empty.
+	  				sourceDataLine.drain();
+	  				sourceDataLine.close();
+					music.playTogether = false;
+	  			}				
 			}catch (Exception e) {
   				System.out.println(e);
   				System.exit(0);
