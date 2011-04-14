@@ -56,7 +56,12 @@ public class Music
     			byte[] audioData2 = new byte[10000];
     			byte[] audioData3 = new byte[10000];
     			byte[] audioData4 = new byte[10000];
-    			
+
+    			padWith0s(audioData1);
+      			padWith0s(audioData2);
+      			padWith0s(audioData3);
+      			padWith0s(audioData4);
+
       			// Get the previously saved data into a byte array object
       			audioData1 = byteArrayOutputStream1.toByteArray();
       			audioData2 = byteArrayOutputStream2.toByteArray();
@@ -172,7 +177,7 @@ public class Music
 	//fills byte arrays with os
 	public void padWith0s(byte[] array)
 	{
-		for(int i = array.length; i<10000; i++)
+		for(int i = 0; i<10000; i++)
 			array[i] = 0;
 	}
 	
