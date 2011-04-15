@@ -8,7 +8,8 @@ public class Music
   	public boolean paused = false;
   	public boolean playTogether = false;
   	
-	ByteArrayOutputStream byteArrayOutputStream1;
+	ByteArrayOutputStream byteArrayOutputStream;
+        ByteArrayOutputStream byteArrayOutputStream1;
 	ByteArrayOutputStream byteArrayOutputStream2;
 	ByteArrayOutputStream byteArrayOutputStream3;
 	ByteArrayOutputStream byteArrayOutputStream4;
@@ -39,7 +40,7 @@ public class Music
       			targetDataLine.start();
 
       			// Create a thread to capture the microphone data and start it  
-      			Thread captureThread = new CaptureThread(byteArrayOutputStream1, targetDataLine, this);
+      			Thread captureThread = new CaptureThread(byteArrayOutputStream, targetDataLine, this);
       			captureThread.start();
        		} catch (Exception e) {
 			e.printStackTrace();
