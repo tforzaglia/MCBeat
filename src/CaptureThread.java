@@ -1,8 +1,9 @@
+package mcbe;
+
 import java.io.ByteArrayOutputStream;
-import java.util.Scanner;
+import java.io.IOException;
 
 import javax.sound.sampled.TargetDataLine;
-
 
 public class CaptureThread extends Thread {
 	byte tempBuffer[] = new byte[10000];
@@ -21,10 +22,11 @@ public class CaptureThread extends Thread {
 			this.music = music;
 		}
 		
+    @Override
 		public void run()
 		{
 			
-			music.padWith0s(buffer1);
+               /*      	music.padWith0s(buffer1);
   			music.padWith0s(buffer2);
   			music.padWith0s(buffer3);
   			music.padWith0s(buffer4);
@@ -33,7 +35,7 @@ public class CaptureThread extends Thread {
 			music.byteArrayOutputStream2 = new ByteArrayOutputStream();
 			music.byteArrayOutputStream3 = new ByteArrayOutputStream();
 			music.byteArrayOutputStream4 = new ByteArrayOutputStream();
-			
+		*/	
 			music.stopCapture = false;
 				
 			try{
@@ -103,17 +105,9 @@ public class CaptureThread extends Thread {
 				}
 				else
 					System.out.println("No more tracks available");
-  				/*
-  				Scanner scan = new Scanner(System.in);
-  				System.out.println("Name the track");
-  				String name = scan.next();
-  				
-  				//add track name to string vector
-  				music.TrackNames.add(name);
-  				System.out.println(music.TrackNames);
-				*/
-			}catch (Exception e) {
-  				System.out.println(e);
+  			
+			}catch (IOException e) {
+  				e.printStackTrace();
   				System.exit(0);
 			}
 		}
