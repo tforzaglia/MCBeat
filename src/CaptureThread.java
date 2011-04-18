@@ -1,5 +1,3 @@
-package mcbe;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -22,15 +20,10 @@ public class CaptureThread extends Thread {
 			this.music = music;
 		}
 		
-    @Override
 		public void run()
 		{
 			
-               /*      	music.padWith0s(buffer1);
-  			music.padWith0s(buffer2);
-  			music.padWith0s(buffer3);
-  			music.padWith0s(buffer4);
-  			
+               /*      	
 			music.byteArrayOutputStream1 = new ByteArrayOutputStream();
 			music.byteArrayOutputStream2 = new ByteArrayOutputStream();
 			music.byteArrayOutputStream3 = new ByteArrayOutputStream();
