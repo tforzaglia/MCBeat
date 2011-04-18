@@ -42,8 +42,8 @@ public class Music
       			// Create a thread to capture the microphone data and start it  
       			Thread captureThread = new CaptureThread(byteArrayOutputStream, targetDataLine, this);
       			captureThread.start();
-       		} catch (Exception e) {
-			e.printStackTrace();
+       		} catch (LineUnavailableException lue) {
+			lue.printStackTrace();
       			System.exit(0);
     			}
   	}
@@ -60,12 +60,12 @@ public class Music
  		padWith0s(audioData2);
  		padWith0s(audioData3);
  		padWith0s(audioData4);
-  		
+  	*/
       
             audioData1 = byteArrayOutputStream1.toByteArray();
             audioData2 = byteArrayOutputStream2.toByteArray();
             audioData3 = byteArrayOutputStream3.toByteArray();
-            audioData4 = byteArrayOutputStream4.toByteArray();*/
+            audioData4 = byteArrayOutputStream4.toByteArray();
             try {
                 if (numRecs == 2 && !playTogether) {
                     // Get an input stream on the byte array containing the data
@@ -176,7 +176,7 @@ public class Music
 			int count;
 
                         System.out.println(buff1.length + " " + buff2.length + " " + buff3.length + " " + buff4.length);
-			padWith0s(mixedOutput);
+			//padWith0s(mixedOutput);
 			for(int i = 0; i<10000; i++)
 			{
 				//add elements of all 4 track buffers track1[0]+track2[0]+track3[0]+track4[0]and so on for all elements of the arrays
