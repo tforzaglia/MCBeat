@@ -7,20 +7,12 @@ public class Music
 	public boolean stopCapture = false;
   	public boolean paused = false;
   	public boolean playTogether = false;
-  	
-<<<<<<< HEAD
-	ByteArrayOutputStream byteArrayOutputStream;
-    ByteArrayOutputStream byteArrayOutputStream1;
-	ByteArrayOutputStream byteArrayOutputStream2;
-	ByteArrayOutputStream byteArrayOutputStream3;
-	ByteArrayOutputStream byteArrayOutputStream4;
-=======
+
 	ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ByteArrayOutputStream byteArrayOutputStream1 = new ByteArrayOutputStream();
 	ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
 	ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
 	ByteArrayOutputStream byteArrayOutputStream4 = new ByteArrayOutputStream();
->>>>>>> 778e8b7f9d26e207b52eefee80fc814bfdc6b9a3
 	
   	AudioFormat audioFormat;
   	TargetDataLine targetDataLine;
@@ -33,8 +25,6 @@ public class Music
   	AudioInputStream audioInputStream4;
   	
   	int numRecs = 1;
-  	
-	Vector<String>TrackNames = new Vector<String>();
 	
 	// captures audio input from a microphone and saves it in a ByteArrayOutputStream object.
   	public void captureAudio()
@@ -212,8 +202,8 @@ public class Music
 	      		// Create a thread to play back the data 
 	      		Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
 	      		playThread.start();
-	  	}catch (LineUnavailableException e) {
-	  		e.printStackTrace();
+	  	}catch (LineUnavailableException lue) {
+	  		lue.printStackTrace();
 	  		System.exit(0);	
 		}
 	}
