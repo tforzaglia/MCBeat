@@ -9,7 +9,7 @@ public class Music
   	public boolean playTogether = false;
   	
 	ByteArrayOutputStream byteArrayOutputStream;
-        ByteArrayOutputStream byteArrayOutputStream1;
+    ByteArrayOutputStream byteArrayOutputStream1;
 	ByteArrayOutputStream byteArrayOutputStream2;
 	ByteArrayOutputStream byteArrayOutputStream3;
 	ByteArrayOutputStream byteArrayOutputStream4;

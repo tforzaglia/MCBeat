@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class Beat_Main implements WindowListener {
 
@@ -43,32 +44,81 @@ public class Beat_Main implements WindowListener {
         Container content = f.getContentPane();
         content.setBackground(Color.white);
         content.setLayout(new FlowLayout());
+        
+        // make 5 sets of of buttons
+        JButton playButton1 = new JButton(new ImageIcon("sketchBlackPlay.png"));
+        JButton stopRecButton1 = new JButton(new ImageIcon("sketchBlackStop.png"));
+        JButton recordButton1 = new JButton(new ImageIcon("sketchBlackRecord.png"));
+        JButton pauseButton1 = new JButton(new ImageIcon("sketchBlackPause.png"));
+        JButton playAllButton1 = new JButton(new ImageIcon("sketchBlackPush.png"));
+        
+        JButton playButton2 = new JButton(new ImageIcon("sketchBlackPlay.png"));
+        JButton stopRecButton2 = new JButton(new ImageIcon("sketchBlackStop.png"));
+        JButton recordButton2 = new JButton(new ImageIcon("sketchBlackRecord.png"));
+        JButton pauseButton2 = new JButton(new ImageIcon("sketchBlackPause.png"));
+        JButton playAllButton2 = new JButton(new ImageIcon("sketchBlackPush.png"));
+        
+        JButton playButton3 = new JButton(new ImageIcon("sketchBlackPlay.png"));
+        JButton stopRecButton3 = new JButton(new ImageIcon("sketchBlackStop.png"));
+        JButton recordButton3 = new JButton(new ImageIcon("sketchBlackRecord.png"));
+        JButton pauseButton3 = new JButton(new ImageIcon("sketchBlackPause.png"));
+        JButton playAllButton3 = new JButton(new ImageIcon("sketchBlackPush.png"));
 
-        JButton playButton = new JButton(new ImageIcon("play.png"));
-        JButton stopRecButton = new JButton(new ImageIcon("stop.png"));
-        JButton recordButton = new JButton(new ImageIcon("record.png"));
-        JButton pauseButton = new JButton(new ImageIcon("pause.png"));
-        JButton playAllButton = new JButton(new ImageIcon("playAll.png"));
-
-
+        JButton playButton4 = new JButton(new ImageIcon("sketchBlackPlay.png"));
+        JButton stopRecButton4 = new JButton(new ImageIcon("sketchBlackStop.png"));
+        JButton recordButton4 = new JButton(new ImageIcon("sketchBlackRecord.png"));
+        JButton pauseButton4 = new JButton(new ImageIcon("sketchBlackPause.png"));
+        JButton playAllButton4 = new JButton(new ImageIcon("sketchBlackPush.png"));
+        
 //        JButton playButton = new JButton("play");
 //        JButton stopRecButton = new JButton("stop");
 //        JButton recordButton = new JButton("record");
 //        JButton pauseButton = new JButton("pause");
 //        JButton playAllButton = new JButton("playAll");
 
-        playButton.addActionListener(new playButtonActionListener(recorder));
-        stopRecButton.addActionListener(new stopRecButtonActionListener(recorder));
-        recordButton.addActionListener(new recordButtonActionListener(recorder));
-        pauseButton.addActionListener(new pauseButtonActionListener(recorder));
-        playAllButton.addActionListener(new playAllButtonActionListener(recorder));
+//        playButton.addActionListener(new playButtonActionListener(recorder));
+//        stopRecButton.addActionListener(new stopRecButtonActionListener(recorder));
+//        recordButton.addActionListener(new recordButtonActionListener(recorder));
+//        pauseButton.addActionListener(new pauseButtonActionListener(recorder));
+//        playAllButton.addActionListener(new playAllButtonActionListener(recorder));
 
-        content.setLayout(new BoxLayout(content, 0));
-        content.add(recordButton);
-        content.add(stopRecButton);
-        content.add(pauseButton);
-        content.add(playButton);
-        content.add(playAllButton);
+        JPanel trackPanel1 = new JPanel();
+        trackPanel1.setLayout(new BoxLayout(trackPanel1, 0));
+        trackPanel1.add(recordButton1);
+        trackPanel1.add(stopRecButton1);
+        trackPanel1.add(pauseButton1);
+        trackPanel1.add(playButton1);
+        trackPanel1.add(playAllButton1);
+        
+        JPanel trackPanel2 = new JPanel();
+        trackPanel2.setLayout(new BoxLayout(trackPanel2, 0));
+        trackPanel2.add(recordButton2);
+        trackPanel2.add(stopRecButton2);
+        trackPanel2.add(pauseButton2);
+        trackPanel2.add(playButton2);
+        trackPanel2.add(playAllButton2);
+        
+        JPanel trackPanel3 = new JPanel();
+        trackPanel3.setLayout(new BoxLayout(trackPanel3, 0));
+        trackPanel3.add(recordButton3);
+        trackPanel3.add(stopRecButton3);
+        trackPanel3.add(pauseButton3);
+        trackPanel3.add(playButton3);
+        trackPanel3.add(playAllButton3);
+        
+        JPanel trackPanel4 = new JPanel();
+        trackPanel4.setLayout(new BoxLayout(trackPanel4, 0));
+        trackPanel4.add(recordButton4);
+        trackPanel4.add(stopRecButton4);
+        trackPanel4.add(pauseButton4);
+        trackPanel4.add(playButton4);
+        trackPanel4.add(playAllButton4);
+        
+        content.setLayout(new BoxLayout(content, 1));
+        content.add(trackPanel1);
+        content.add(trackPanel2);
+        content.add(trackPanel3);
+        content.add(trackPanel4);
 
 
 
