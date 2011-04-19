@@ -8,11 +8,19 @@ public class Music
   	public boolean paused = false;
   	public boolean playTogether = false;
   	
+<<<<<<< HEAD
 	ByteArrayOutputStream byteArrayOutputStream;
     ByteArrayOutputStream byteArrayOutputStream1;
 	ByteArrayOutputStream byteArrayOutputStream2;
 	ByteArrayOutputStream byteArrayOutputStream3;
 	ByteArrayOutputStream byteArrayOutputStream4;
+=======
+	ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream byteArrayOutputStream1 = new ByteArrayOutputStream();
+	ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
+	ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
+	ByteArrayOutputStream byteArrayOutputStream4 = new ByteArrayOutputStream();
+>>>>>>> 778e8b7f9d26e207b52eefee80fc814bfdc6b9a3
 	
   	AudioFormat audioFormat;
   	TargetDataLine targetDataLine;
@@ -42,8 +50,8 @@ public class Music
       			// Create a thread to capture the microphone data and start it  
       			Thread captureThread = new CaptureThread(byteArrayOutputStream, targetDataLine, this);
       			captureThread.start();
-       		} catch (Exception e) {
-			e.printStackTrace();
+       		} catch (LineUnavailableException lue) {
+			lue.printStackTrace();
       			System.exit(0);
     			}
   	}
@@ -56,87 +64,80 @@ public class Music
   		byte[] audioData3 = new byte[10000];
   		byte[] audioData4 = new byte[10000];
   		
-  		padWith0s(audioData1);
+  	/*	padWith0s(audioData1);
  		padWith0s(audioData2);
  		padWith0s(audioData3);
  		padWith0s(audioData4);
-  		
-        try{
-    			audioData1 = byteArrayOutputStream1.toByteArray();
-    			audioData2 = byteArrayOutputStream2.toByteArray();
-    			audioData3 = byteArrayOutputStream3.toByteArray();
-    			audioData4 = byteArrayOutputStream4.toByteArray();
-	
-      			if( numRecs == 2 && !playTogether )
-      			{		
-				    // Get an input stream on the byte array containing the data
-	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData1 );
-	      			AudioFormat audioFormat = getAudioFormat();
-	      			audioInputStream1 = new AudioInputStream( byteArrayInputStream, audioFormat,
-						audioData1.length/audioFormat.getFrameSize());
-	      			DataLine.Info dataLineInfo = new DataLine.Info( SourceDataLine.class, audioFormat );
-	      			sourceDataLine = (SourceDataLine) AudioSystem.getLine( dataLineInfo );
-	     			sourceDataLine.open( audioFormat );
-	      			sourceDataLine.start();
-	
-	      			// Create a thread to play back the data 
-	      			Thread playThread = new PlayThread(audioInputStream1, sourceDataLine, this);
-	      			playThread.start();
-      			}
-      			else if( numRecs == 3 && !playTogether )
-      			{		
-				    // Get an input stream on the byte array containing the data
-	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData2 );
-	      			AudioFormat audioFormat = getAudioFormat();
-	      			audioInputStream2 = new AudioInputStream( byteArrayInputStream, audioFormat,
-						audioData2.length/audioFormat.getFrameSize());
-	      			DataLine.Info dataLineInfo = new DataLine.Info( SourceDataLine.class, audioFormat );
-	      			sourceDataLine = (SourceDataLine) AudioSystem.getLine( dataLineInfo );
-	     			sourceDataLine.open( audioFormat );
-	      			sourceDataLine.start();
-	
-	      			// Create a thread to play back the data 
-	      			Thread playThread = new PlayThread(audioInputStream2, sourceDataLine, this);
-	      			playThread.start();
-      			}
-      			else if( numRecs == 4 && !playTogether )
-      			{		
-				    // Get an input stream on the byte array containing the data
-	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData3 );
-	      			AudioFormat audioFormat = getAudioFormat();
-	      			audioInputStream3 = new AudioInputStream( byteArrayInputStream, audioFormat,
-						audioData3.length/audioFormat.getFrameSize());
-	      			DataLine.Info dataLineInfo = new DataLine.Info( SourceDataLine.class, audioFormat );
-	      			sourceDataLine = (SourceDataLine) AudioSystem.getLine( dataLineInfo );
-	     			sourceDataLine.open( audioFormat );
-	      			sourceDataLine.start();
-	
-	      			// Create a thread to play back the data 
-	      			Thread playThread = new PlayThread(audioInputStream3, sourceDataLine, this);
-	      			playThread.start();
-      			}
-      			else if( numRecs == 5 && !playTogether )
-      			{		
-				    // Get an input stream on the byte array containing the data
-	      			InputStream byteArrayInputStream = new ByteArrayInputStream( audioData4 );
-	      			AudioFormat audioFormat = getAudioFormat();
-	      			audioInputStream4 = new AudioInputStream( byteArrayInputStream, audioFormat,
-						audioData4.length/audioFormat.getFrameSize());
-	      			DataLine.Info dataLineInfo = new DataLine.Info( SourceDataLine.class, audioFormat );
-	      			sourceDataLine = (SourceDataLine) AudioSystem.getLine( dataLineInfo );
-	     			sourceDataLine.open( audioFormat );
-	      			sourceDataLine.start();
-	
-	      			// Create a thread to play back the data 
-	      			Thread playThread = new PlayThread(audioInputStream4, sourceDataLine, this);
-	      			playThread.start();
-      			}
-      			else if( playTogether )
-      				playTogether(audioData1, audioData2, audioData4, audioData4 );     				
-		} catch (Exception e) {
-      			e.printStackTrace();
-      			System.exit(0);
-    			}
+  	*/
+      
+            audioData1 = byteArrayOutputStream1.toByteArray();
+            audioData2 = byteArrayOutputStream2.toByteArray();
+            audioData3 = byteArrayOutputStream3.toByteArray();
+            audioData4 = byteArrayOutputStream4.toByteArray();
+            try {
+                if (numRecs == 2 && !playTogether) {
+                    // Get an input stream on the byte array containing the data
+                    InputStream byteArrayInputStream = new ByteArrayInputStream(audioData1);
+                    AudioFormat audioFormat = getAudioFormat();
+                    audioInputStream1 = new AudioInputStream(byteArrayInputStream, audioFormat,
+                            audioData1.length / audioFormat.getFrameSize());
+                    DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+                    sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+                    sourceDataLine.open(audioFormat);
+                    sourceDataLine.start();
+
+                    // Create a thread to play back the data
+                    Thread playThread = new PlayThread(audioInputStream1, sourceDataLine, this);
+                    playThread.start();
+                } else if (numRecs == 3 && !playTogether) {
+                    // Get an input stream on the byte array containing the data
+                    InputStream byteArrayInputStream = new ByteArrayInputStream(audioData2);
+                    AudioFormat audioFormat = getAudioFormat();
+                    audioInputStream2 = new AudioInputStream(byteArrayInputStream, audioFormat,
+                            audioData2.length / audioFormat.getFrameSize());
+                    DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+                    sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+                    sourceDataLine.open(audioFormat);
+                    sourceDataLine.start();
+
+                    // Create a thread to play back the data
+                    Thread playThread = new PlayThread(audioInputStream2, sourceDataLine, this);
+                    playThread.start();
+                } else if (numRecs == 4 && !playTogether) {
+                    // Get an input stream on the byte array containing the data
+                    InputStream byteArrayInputStream = new ByteArrayInputStream(audioData3);
+                    AudioFormat audioFormat = getAudioFormat();
+                    audioInputStream3 = new AudioInputStream(byteArrayInputStream, audioFormat,
+                            audioData3.length / audioFormat.getFrameSize());
+                    DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+                    sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+                    sourceDataLine.open(audioFormat);
+                    sourceDataLine.start();
+
+                    // Create a thread to play back the data
+                    Thread playThread = new PlayThread(audioInputStream3, sourceDataLine, this);
+                    playThread.start();
+                } else if (numRecs == 5 && !playTogether) {
+                    // Get an input stream on the byte array containing the data
+                    InputStream byteArrayInputStream = new ByteArrayInputStream(audioData4);
+                    AudioFormat audioFormat = getAudioFormat();
+                    audioInputStream4 = new AudioInputStream(byteArrayInputStream, audioFormat,
+                            audioData4.length / audioFormat.getFrameSize());
+                    DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+                    sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+                    sourceDataLine.open(audioFormat);
+                    sourceDataLine.start();
+
+                    // Create a thread to play back the data
+                    Thread playThread = new PlayThread(audioInputStream4, sourceDataLine, this);
+                    playThread.start();
+                } else if (playTogether) {
+                    playTogether(audioData1, audioData2, audioData3, audioData4);
+                }
+            } catch (LineUnavailableException lue) {
+                lue.printStackTrace();
+            }
+
   	}
 
 	// creates and returns an AudioFormat object 
@@ -181,12 +182,22 @@ public class Music
 		try{
 			byte[] mixedOutput = new byte[10000];
 			int count;
-			
-			padWith0s(mixedOutput);
+
+                        System.out.println(buff1.length + " " + buff2.length + " " + buff3.length + " " + buff4.length);
+			//padWith0s(mixedOutput);
 			for(int i = 0; i<10000; i++)
 			{
 				//add elements of all 4 track buffers track1[0]+track2[0]+track3[0]+track4[0]and so on for all elements of the arrays
-				mixedOutput[i] = (byte)(buff1[i] + buff2[i] + buff3[i] + buff4[i]);
+                                mixedOutput[i] = 0;
+                                if (i < buff1.length)
+                                    mixedOutput[i] += buff1[i];
+                                if (i < buff2.length)
+                                    mixedOutput[i] += buff2[i];
+                                if (i < buff3.length)
+                                    mixedOutput[i] += buff3[i];
+                                if (i < buff4.length)
+                                    mixedOutput[i] += buff4[i];
+
 			}
 			// Get an input stream on the byte array containing the data
 	      		InputStream byteArrayInputStream = new ByteArrayInputStream( mixedOutput );
@@ -201,11 +212,9 @@ public class Music
 	      		// Create a thread to play back the data 
 	      		Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
 	      		playThread.start();
-	  	}catch (Exception e) {
+	  	}catch (LineUnavailableException e) {
 	  		e.printStackTrace();
 	  		System.exit(0);	
 		}
 	}
 }
-	
-	
