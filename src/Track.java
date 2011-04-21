@@ -1,53 +1,168 @@
-import java.util.Vector;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mcbe;
 
-public class Track {
-	
-	//private ByteArrayOutputStream audio;
-	
-	private Vector<Byte> data = new Vector<Byte>();
-	private boolean enable = false;
-	private String name;
-	
-	public Track( Vector<Byte> data, boolean enable, String name )
-	{
-		this.data = data;
-		this.setEnable(false);
-		this.name = name;
-		//volume
-	}
-	
-	public void setData(Vector<Byte> data)
-	{
-		this.data = data;
-	}
-	
-	public Vector<Byte> getData()
-	{
-		return this.data; 
-	}
-	
-	public void enableTrack()
-	{
-		this.setEnable(true);
-	}
-	
-	public String getName()
-	{
-		return name;
-	}
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.*;
 
-	public void setEnable(boolean enable) 
-	{
-		this.enable = enable;
-	}
+/**
+ *
+ * @author bmerriman.student
+ */
+public class Track extends Canvas {
 
-	public boolean isEnable() 
-	{
-		return enable;
-	}
-		
+    private ByteArrayOutputStream byteArrayOutputStream;
+    private String name;
+    private boolean paused = false;
+    private boolean isRecording = false;
+    private boolean isPlaying = false;
+    public long trackLength;
+    private long startTime;
+    public long startPlayTime;
+    public double percentDone = 0.0;
+
+    public Track(String name) {
+        this.name = name;
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        this.setSize(300, 50);
+        this.setBackground(Color.white);
+        this.repaint();
+    }
+
+    public void rename(String s) {
+        name = s;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void startRecording() {
+        isRecording = true;
+        startPlayTime = System.currentTimeMillis();
+        AudioFormat audioFormat;
+        TargetDataLine targetDataLine;
+
+        try {
+            // Get everything set up for capture
+            audioFormat = getAudioFormat();
+            DataLine.Info dataLineInfo = new DataLine.Info(TargetDataLine.class, audioFormat);
+            targetDataLine = (TargetDataLine) AudioSystem.getLine(dataLineInfo);
+            targetDataLine.open(audioFormat);
+            targetDataLine.start();
+
+
+            // Create a thread to capture the microphone data and start it
+            Thread captureThread = new CaptureThread(byteArrayOutputStream, targetDataLine, this);
+            captureThread.start();
+        } catch (LineUnavailableException lue) {
+            lue.printStackTrace();
+            System.exit(0);
+        }
+    }
+
+    public void stopRecording() {
+        isRecording = false;
+    }
+
+    public void startPlay() {
+        isPlaying = true;
+        paused = false;
+        byte[] audioData = new byte[10000];
+        SourceDataLine sourceDataLine;
+        AudioInputStream audioInputStream;
+        audioData = byteArrayOutputStream.toByteArray();
+
+        try {
+            InputStream byteArrayInputStream = new ByteArrayInputStream(audioData);
+            AudioFormat audioFormat = getAudioFormat();
+            audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
+                    audioData.length / audioFormat.getFrameSize());
+            DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+            sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+            sourceDataLine.open(audioFormat);
+            sourceDataLine.start();
+
+            // Create a thread to startPlay back the data
+            Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
+            playThread.start();
+
+        } catch (LineUnavailableException lue) {
+            lue.printStackTrace();
+        }
+
+    }
+
+    public void stopPlay() {
+        isPlaying = false;
+    }
+
+    public void addTrack(Track t) throws IOException {
+
+        byte[] master = byteArrayOutputStream.toByteArray();
+        byte[] newTrack = t.byteArrayOutputStream.toByteArray();
+        byteArrayOutputStream.reset();
+
+        if (master.length < newTrack.length) {
+            for (int i = 0; i < master.length; i++) {
+                newTrack[i] += master[i];
+            }
+            byteArrayOutputStream.write(newTrack);
+        } else {
+            for (int i = 0; i < newTrack.length; i++) {
+                master[i] += newTrack[i];
+            }
+            byteArrayOutputStream.write(master);
+        }
+    }
+
+    public void pause() {
+        paused = true;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public boolean isRecording() {
+        return isRecording;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void clearTrack() {
+        byteArrayOutputStream.reset();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Courier", Font.PLAIN, 18));
+        g.drawString(this.getName(), 20, 45);
+        if(isPlaying){
+            g.setColor(new Color(150,200,132,45));
+            g.fillRect(0, 0, (int)(this.percentDone*300), 50);
+        }
+    }
+
+    private AudioFormat getAudioFormat() {
+        float sampleRate = 8000.0F;
+        int sampleSizeInBits = 16;
+        int channels = 1;
+        boolean isSigned = true;
+        boolean bigEndian = false;
+        return new AudioFormat(sampleRate, sampleSizeInBits, channels, isSigned, bigEndian);
+    }
 }
-
-//get set data 
-//get set volume
-//set enabled
