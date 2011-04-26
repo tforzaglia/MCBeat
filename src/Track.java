@@ -22,6 +22,7 @@ import javax.sound.sampled.*;
 public class Track extends Canvas {
 
     private ByteArrayOutputStream byteArrayOutputStream;
+    private AudioInputStream audioInputStream;
     private String name;
     private boolean paused = false;
     private boolean isRecording = false;
@@ -80,7 +81,7 @@ public class Track extends Canvas {
         paused = false;
         byte[] audioData = new byte[10000];
         SourceDataLine sourceDataLine;
-        AudioInputStream audioInputStream;
+        //AudioInputStream audioInputStream;
         audioData = byteArrayOutputStream.toByteArray();
 
         try {
@@ -125,6 +126,34 @@ public class Track extends Canvas {
             byteArrayOutputStream.write(master);
         }
     }
+
+    public void volume(float newVol, SourceDataLine sourceDataLine){	
+	FloatControl volume = (FloatControl) sourceDataLine.getControl(FloatControl.Type.MASTER_GAIN);
+	volume.setValue(newVol);
+    }
+
+    public void save() throws IOException{
+	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
+	File audioFile = new File("track.wav");
+	AudioSystem.write(audioInputStream, fileType, audioFile);
+    }
+	
+    public void open() throws IOException{
+	try{
+	        File audioFile = new File("track.wav");
+      		audioInputStream = AudioSystem.getAudioInputStream(audioFile);
+      		byte[] audioData = new byte[10000];
+      		//write data from audioInputStream to byteArrayOutputStream
+      		int count;
+      		while (( count = audioInputStream.read(audioData, 0, audioData.length)) != -1)
+      		{
+      			if (count > 0)
+      				byteArrayOutputStream.write(audioData, 0, count);
+      		}
+	}catch(UnsupportedAudioFileException uafe){
+      		uafe.printStackTrace();
+      		}
+	}
 
     public void pause() {
         paused = true;
