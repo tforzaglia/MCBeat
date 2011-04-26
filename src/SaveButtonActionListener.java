@@ -12,7 +12,7 @@ public class SaveButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try{
-                	track.save(track);
+                	track.save();
         	} catch (IOException ex) {
         		Logger.getLogger(PushButtonActionListener.class.getName()).log(Level.SEVERE, null, ex);
         		}
