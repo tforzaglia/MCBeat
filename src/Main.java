@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mcbe;
+
 
 import java.awt.Canvas;
 import java.awt.Color;
