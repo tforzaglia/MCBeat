@@ -1,9 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package mcbe;
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Container;
@@ -58,7 +52,9 @@ public class Main {
 
         JButton playButtonMaster = new JButton(new ImageIcon("sketchBlackPlay.png"));
         JButton pauseButtonMaster = new JButton(new ImageIcon("sketchBlackPause.png"));
-        JButton clearButtonMaster = new JButton(new ImageIcon("sketchBlackClear.png"));
+        JButton clearButtonMaster = new JButton(new ImageIcon("sketchBlackTrashClear.png"));
+        JButton saveButtonMaster = new JButton(new ImageIcon("sketchBlackSaveFile.png"));
+        JButton openButtonMaster = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
 
         playButtonMaster.addActionListener(new PlayButtonActionListener(trackMaster));
         pauseButtonMaster.addActionListener(new PauseButtonActionListener(trackMaster));
@@ -69,9 +65,9 @@ public class Main {
         trackPanelMaster.setLayout(new BoxLayout(trackPanelMaster, 0));
         trackPanelMaster.add(playButtonMaster);
         trackPanelMaster.add(pauseButtonMaster);
-     
         trackPanelMaster.add(clearButtonMaster);
-
+        trackPanelMaster.add(saveButtonMaster);
+        trackPanelMaster.add(openButtonMaster);
 
         content.setLayout(new BoxLayout(content, 1));
         content.add(new TrackGUI(track1, trackMaster).getTrackPanel());

@@ -1,9 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -42,6 +36,7 @@ public class Track extends Canvas {
 
     public void rename(String s) {
         name = s;
+        this.repaint();
     }
 
     public String getName() {

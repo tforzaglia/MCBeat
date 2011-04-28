@@ -1,5 +1,3 @@
-package mcbe;
-
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
