@@ -63,10 +63,15 @@ public class Main {
 
         JPanel trackPanelMaster = new JPanel();
         trackPanelMaster.setLayout(new BoxLayout(trackPanelMaster, 0));
+        trackPanelMaster.setBackground(Color.WHITE);
         trackPanelMaster.add(playButtonMaster);
+        trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(pauseButtonMaster);
+        trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(clearButtonMaster);
+        trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(saveButtonMaster);
+        trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(openButtonMaster);
 
         content.setLayout(new BoxLayout(content, 1));

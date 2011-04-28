@@ -47,21 +47,26 @@ public class TrackGUI {
         volumePanel.setLayout(new BoxLayout(volumePanel, 1));
         volumePanel.setBackground(Color.white);
         trackPanel.setLayout(new BoxLayout(trackPanel, 0));
-        Canvas trackDisplay = new TrackDisplay(track);
         trackPanel.setBackground(Color.WHITE);
 
         trackPanel.add(recordButton);
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(stopRecButton);
-        trackPanel.add(Box.createRigidArea(new Dimension(10,0)));
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(playButton);
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(pauseButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(track);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(volumePanel);
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(deleteButton);
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(pushButton);
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(saveButton);
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(openButton);
 
 
