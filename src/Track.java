@@ -9,14 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.sound.sampled.*;
 
-/**
- *
- * @author bmerriman.student
- */
 public class Track extends Canvas {
 
     private ByteArrayOutputStream byteArrayOutputStream;
-    private AudioInputStream audioInputStream;
     private String name;
     private boolean paused = false;
     private boolean isRecording = false;
@@ -76,7 +71,7 @@ public class Track extends Canvas {
         paused = false;
         byte[] audioData = new byte[10000];
         SourceDataLine sourceDataLine;
-        //AudioInputStream audioInputStream;
+        AudioInputStream audioInputStream;
         audioData = byteArrayOutputStream.toByteArray();
 
         try {
@@ -128,6 +123,13 @@ public class Track extends Canvas {
     }
 
     public void save() throws IOException{
+    	AudioInputStream audioInputStream;
+    	byte[] audioData = new byte[10000];
+    	audioData = byteArrayOutputStream.toByteArray();
+    	InputStream byteArrayInputStream = new ByteArrayInputStream(audioData);
+        AudioFormat audioFormat = getAudioFormat();
+        audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
+        	audioData.length / audioFormat.getFrameSize());
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
 	File audioFile = new File("track.wav");
 	AudioSystem.write(audioInputStream, fileType, audioFile);
@@ -136,7 +138,7 @@ public class Track extends Canvas {
     public void open() throws IOException{
 	try{
 	        File audioFile = new File("track.wav");
-      		audioInputStream = AudioSystem.getAudioInputStream(audioFile);
+      		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
       		byte[] audioData = new byte[10000];
       		//write data from audioInputStream to byteArrayOutputStream
       		int count;
