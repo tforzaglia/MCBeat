@@ -26,6 +26,9 @@ public class TrackGUI {
         JButton pushButton = new JButton(new ImageIcon("sketchBlackPush.png"));
         JButton deleteButton = new JButton(new ImageIcon("sketchBlackTrashClear.png"));
         JButton saveButton = new JButton(new ImageIcon("sketchBlackSaveFile.png"));
+        
+        JButton renameButton = new JButton(new ImageIcon("sketchBlackRename.png"));
+        
         JSlider volume = new JSlider();
         JButton openButton = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
         pauseButton.addActionListener(new PauseButtonActionListener(track));
@@ -36,6 +39,7 @@ public class TrackGUI {
         deleteButton.addActionListener(new ClearButtonActionListener(track));
         saveButton.addActionListener(new SaveButtonActionListener(track));
         openButton.addActionListener(new OpenButtonActionListener(track));
+        renameButton.addActionListener(new RenameButtonActionListener(track));
 
         volume.addChangeListener(new VolumeSliderChangeListener(track, volume));
 
@@ -61,13 +65,16 @@ public class TrackGUI {
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(volumePanel);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
-        trackPanel.add(deleteButton);
+        trackPanel.add(renameButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(pushButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(saveButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(openButton);
+        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        trackPanel.add(deleteButton);
+        
 
 
     }

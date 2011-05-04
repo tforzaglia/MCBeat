@@ -1,7 +1,5 @@
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 public class StopRecButtonActionListener implements ActionListener {
 
@@ -14,7 +12,5 @@ public class StopRecButtonActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         track.stopRecording();
-        String name = (String) JOptionPane.showInputDialog(new Frame() ,"Enter a name for the track", null);
-        track.rename(name);
     }
 }

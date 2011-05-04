@@ -22,7 +22,7 @@ public class TrackDisplay extends Canvas {
     public void paint(Graphics g){
 
         g.setFont(new Font("Courier", Font.PLAIN,  18));
-        g.drawString(track.getName(), 5, 45);
+        g.drawString(track.getName(), 5, 25);
     }
 }
 

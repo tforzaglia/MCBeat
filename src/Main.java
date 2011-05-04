@@ -55,11 +55,12 @@ public class Main {
         JButton clearButtonMaster = new JButton(new ImageIcon("sketchBlackTrashClear.png"));
         JButton saveButtonMaster = new JButton(new ImageIcon("sketchBlackSaveFile.png"));
         JButton openButtonMaster = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
+        JButton pushButtonMaster = new JButton(new ImageIcon("sketchBlackPush.png"));
 
         playButtonMaster.addActionListener(new PlayButtonActionListener(trackMaster));
         pauseButtonMaster.addActionListener(new PauseButtonActionListener(trackMaster));
         clearButtonMaster.addActionListener(new ClearButtonActionListener(trackMaster));
-
+        pushButtonMaster.addActionListener(new PushFromMasterButtonActionListener(f, trackMaster, track1,track2,track3,track4));
 
         JPanel trackPanelMaster = new JPanel();
         trackPanelMaster.setLayout(new BoxLayout(trackPanelMaster, 0));
@@ -68,11 +69,13 @@ public class Main {
         trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(pauseButtonMaster);
         trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
-        trackPanelMaster.add(clearButtonMaster);
-        trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(saveButtonMaster);
         trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(openButtonMaster);
+        trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
+        trackPanelMaster.add(clearButtonMaster);
+        trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
+        trackPanelMaster.add(pushButtonMaster);
 
         content.setLayout(new BoxLayout(content, 1));
         content.add(new TrackGUI(track1, trackMaster).getTrackPanel());

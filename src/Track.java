@@ -122,7 +122,7 @@ public class Track extends Canvas {
 	volume.setValue(newVol);
     }
 
-    public void save() throws IOException{
+    public void save(File file) throws IOException{
     	AudioInputStream audioInputStream;
     	byte[] audioData = new byte[10000];
     	audioData = byteArrayOutputStream.toByteArray();
@@ -131,8 +131,7 @@ public class Track extends Canvas {
         audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
         	audioData.length / audioFormat.getFrameSize());
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
-	File audioFile = new File("track.wav");
-	AudioSystem.write(audioInputStream, fileType, audioFile);
+	AudioSystem.write(audioInputStream, fileType, file);
     }
 	
     public void open() throws IOException{
