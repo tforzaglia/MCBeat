@@ -30,6 +30,8 @@ public class TrackGUI {
         JButton renameButton = new JButton(new ImageIcon("sketchBlackRename.png"));
         
         JSlider volume = new JSlider();
+        volume.setMaximum(7);
+        volume.setMinimum(-15);
         JButton openButton = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
         pauseButton.addActionListener(new PauseButtonActionListener(track));
         playButton.addActionListener(new PlayButtonActionListener(track));

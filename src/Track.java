@@ -20,6 +20,7 @@ public class Track extends Canvas {
     private long startTime;
     public long startPlayTime;
     public double percentDone = 0.0;
+    private float volume;
 
     public Track(String name) {
         this.name = name;
@@ -117,9 +118,26 @@ public class Track extends Canvas {
         }
     }
 
-    public void volume(float newVol, SourceDataLine sourceDataLine){	
-	FloatControl volume = (FloatControl) sourceDataLine.getControl(FloatControl.Type.MASTER_GAIN);
-	volume.setValue(newVol);
+    public void volume(int newVol) throws LineUnavailableException{    
+        
+        SourceDataLine sourceDataLine;
+        AudioFormat audioFormat = getAudioFormat();
+        
+        DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+        sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+        sourceDataLine.open(audioFormat);
+        sourceDataLine.start();
+        FloatControl volume = (FloatControl) sourceDataLine.getControl(FloatControl.Type.VOLUME);
+        volume.setValue((float) newVol);
+    }
+    
+    public void setVolume(int newVol) {
+    	volume = (float) newVol;
+    	
+    }
+    
+    public float getVolume() {
+    	return volume;
     }
 
     public void save(File file) throws IOException{

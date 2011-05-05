@@ -39,12 +39,9 @@ public class Main {
         f.setJMenuBar(menuBar);
         JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
-        JMenuItem saveFile = new JMenuItem("Save File...");
-        fileMenu.add(saveFile);
-        JMenuItem openFile = new JMenuItem("Open File...");
-        fileMenu.add(openFile);
         JMenuItem exit = new JMenuItem("Exit");
         fileMenu.add(exit);
+        exit.addActionListener(new CloseWindow());
         Container content = f.getContentPane();
         content.setBackground(Color.white);
         content.setLayout(new FlowLayout());
@@ -61,6 +58,7 @@ public class Main {
         pauseButtonMaster.addActionListener(new PauseButtonActionListener(trackMaster));
         clearButtonMaster.addActionListener(new ClearButtonActionListener(trackMaster));
         pushButtonMaster.addActionListener(new PushFromMasterButtonActionListener(f, trackMaster, track1,track2,track3,track4));
+        saveButtonMaster.addActionListener(new SaveButtonActionListener(trackMaster));
 
         JPanel trackPanelMaster = new JPanel();
         trackPanelMaster.setLayout(new BoxLayout(trackPanelMaster, 0));

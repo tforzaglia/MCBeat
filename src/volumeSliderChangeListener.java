@@ -1,3 +1,4 @@
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -16,8 +17,7 @@ class VolumeSliderChangeListener implements ChangeListener{
 
     public void stateChanged(ChangeEvent e) {
         System.out.println(vol.getValue());
-
-
+        track.setVolume(vol.getValue());
     }
 
 

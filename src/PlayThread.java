@@ -1,5 +1,6 @@
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.SourceDataLine;
 
 public class PlayThread extends Thread {
@@ -27,6 +28,8 @@ public class PlayThread extends Thread {
                 if (count > 0 && !(track.isPaused())) {
                     //Write data to the internal buffer of the data line
                     sourceDataLine.write(buffer, 0, count);
+                    FloatControl volume = (FloatControl) sourceDataLine.getControl(FloatControl.Type.MASTER_GAIN);
+                    volume.setValue(track.getVolume());
                 }
 
 
