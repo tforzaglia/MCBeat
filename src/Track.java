@@ -11,6 +11,7 @@ import javax.sound.sampled.*;
 
 public class Track extends Canvas {
 
+    Clip clip;
     private ByteArrayOutputStream byteArrayOutputStream;
     private String name;
     private boolean paused = false;
@@ -80,19 +81,24 @@ public class Track extends Canvas {
             AudioFormat audioFormat = getAudioFormat();
             audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
                     audioData.length / audioFormat.getFrameSize());
-            DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
-            sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
-            sourceDataLine.open(audioFormat);
-            sourceDataLine.start();
+            DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
+    	    clip = (Clip) AudioSystem.getLine(info);
+    	    clip.open(audioInputStream);
 
-            // Create a thread to startPlay back the data
-            Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
-            playThread.start();
+            //if checked
+    	    //clip.loop(clip.LOOP_CONTINUOUSLY);
+    		
+    	    //if unchecked
+    	    clip.start();
 
         } catch (LineUnavailableException lue) {
             lue.printStackTrace();
         }
 
+    }
+
+    public void resume(){
+    	clip.loop(clip.LOOP_CONTINUOUSLY);
     }
 
     public void stopPlay() {
@@ -118,22 +124,8 @@ public class Track extends Canvas {
         }
     }
 
-    public void volume(int newVol) throws LineUnavailableException{    
-        
-        SourceDataLine sourceDataLine;
-        AudioFormat audioFormat = getAudioFormat();
-        
-        DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
-        sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
-        sourceDataLine.open(audioFormat);
-        sourceDataLine.start();
-        FloatControl volume = (FloatControl) sourceDataLine.getControl(FloatControl.Type.VOLUME);
-        volume.setValue((float) newVol);
-    }
-    
     public void setVolume(int newVol) {
-    	volume = (float) newVol;
-    	
+    	volume = (float) newVol;	
     }
     
     public float getVolume() {
