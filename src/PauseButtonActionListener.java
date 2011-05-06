@@ -9,6 +9,7 @@ public class PauseButtonActionListener implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+                track.clip.stop();
 		track.pause();
 	}
 
