@@ -82,15 +82,24 @@ public class Track extends Canvas {
             AudioFormat audioFormat = getAudioFormat();
             audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
                     audioData.length / audioFormat.getFrameSize());
-            DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
-            clip = (Clip) AudioSystem.getLine(info);
-            clip.open(audioInputStream);
 
-            //if checked
-            //clip.loop(clip.LOOP_CONTINUOUSLY);
-            
-            //if unchecked
-            clip.start();
+            if (isLooping){        	
+            	DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
+                clip = (Clip) AudioSystem.getLine(info);
+                clip.open(audioInputStream);
+            	clip.loop(Clip.LOOP_CONTINUOUSLY);
+            }
+ 
+            else{
+            	 DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+                 sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+                 sourceDataLine.open(audioFormat);
+                 sourceDataLine.start();
+
+                 // Create a thread to startPlay back the data
+                 Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
+                 playThread.start();
+            }
 
         } catch (LineUnavailableException lue) {
             lue.printStackTrace();
