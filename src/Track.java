@@ -68,7 +68,7 @@ public class Track extends Canvas {
         isRecording = false;
     }
 
-    public void startPlay() {
+    public void startPlay() throws IOException {
         isPlaying = true;
         paused = false;
         byte[] audioData = new byte[10000];
@@ -144,7 +144,7 @@ public class Track extends Canvas {
 	AudioSystem.write(audioInputStream, fileType, file);
     }
 	
-    public void open() throws IOException{
+    public void open(File f) throws IOException{
 	try{
 	        File audioFile = new File("track.wav");
       		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
@@ -185,7 +185,7 @@ public class Track extends Canvas {
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Courier", Font.PLAIN, 18));
-        g.drawString(this.getName(), 20, 45);
+        g.drawString(this.getName(), 100, 45);
         if(isPlaying){
             g.setColor(new Color(150,200,132,45));
             g.fillRect(0, 0, (int)(this.percentDone*300), 50);

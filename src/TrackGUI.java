@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -26,13 +27,14 @@ public class TrackGUI {
         JButton pushButton = new JButton(new ImageIcon("sketchBlackPush.png"));
         JButton deleteButton = new JButton(new ImageIcon("sketchBlackTrashClear.png"));
         JButton saveButton = new JButton(new ImageIcon("sketchBlackSaveFile.png"));
-        
+        JButton openButton = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
         JButton renameButton = new JButton(new ImageIcon("sketchBlackRename.png"));
+        JCheckBox loopCheckBox = new JCheckBox("Loop");
         
         JSlider volume = new JSlider();
         volume.setMaximum(7);
         volume.setMinimum(-15);
-        JButton openButton = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
+        
         pauseButton.addActionListener(new PauseButtonActionListener(track));
         playButton.addActionListener(new PlayButtonActionListener(track));
         recordButton.addActionListener(new RecordButtonActionListener(track));
@@ -42,7 +44,6 @@ public class TrackGUI {
         saveButton.addActionListener(new SaveButtonActionListener(track));
         openButton.addActionListener(new OpenButtonActionListener(track));
         renameButton.addActionListener(new RenameButtonActionListener(track));
-
         volume.addChangeListener(new VolumeSliderChangeListener(track, volume));
 
         JPanel volumePanel = new JPanel();
@@ -63,6 +64,7 @@ public class TrackGUI {
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(pauseButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        trackPanel.add(loopCheckBox);
         trackPanel.add(track);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(volumePanel);
@@ -76,8 +78,6 @@ public class TrackGUI {
         trackPanel.add(openButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(deleteButton);
-        
-
 
     }
 

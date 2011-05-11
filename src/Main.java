@@ -15,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Main {
 
 
         JFrame f = new JFrame("MCBE@");
-        
+        f.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
         f.setJMenuBar(menuBar);
         JMenu fileMenu = new JMenu("File");
@@ -53,12 +54,14 @@ public class Main {
         JButton saveButtonMaster = new JButton(new ImageIcon("sketchBlackSaveFile.png"));
         JButton openButtonMaster = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
         JButton pushButtonMaster = new JButton(new ImageIcon("sketchBlackPush.png"));
+        JCheckBox loopMaster = new JCheckBox("Loop");
 
         playButtonMaster.addActionListener(new PlayButtonActionListener(trackMaster));
         pauseButtonMaster.addActionListener(new PauseButtonActionListener(trackMaster));
         clearButtonMaster.addActionListener(new ClearButtonActionListener(trackMaster));
         pushButtonMaster.addActionListener(new PushFromMasterButtonActionListener(f, trackMaster, track1,track2,track3,track4));
         saveButtonMaster.addActionListener(new SaveButtonActionListener(trackMaster));
+        openButtonMaster.addActionListener(new OpenButtonActionListener(trackMaster));
 
         JPanel trackPanelMaster = new JPanel();
         trackPanelMaster.setLayout(new BoxLayout(trackPanelMaster, 0));
@@ -67,6 +70,7 @@ public class Main {
         trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(pauseButtonMaster);
         trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
+        trackPanelMaster.add(loopMaster);
         trackPanelMaster.add(saveButtonMaster);
         trackPanelMaster.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanelMaster.add(openButtonMaster);
@@ -85,8 +89,7 @@ public class Main {
         content.add(new TrackGUI(track4, trackMaster).getTrackPanel());
         content.add(Box.createRigidArea(new Dimension(0,20)));
         content.add(trackPanelMaster);
-
-
+        
         f.pack();
         f.setVisible(true);
     }
