@@ -45,6 +45,7 @@ public class TrackGUI {
         openButton.addActionListener(new OpenButtonActionListener(track));
         renameButton.addActionListener(new RenameButtonActionListener(track));
         volume.addChangeListener(new VolumeSliderChangeListener(track, volume));
+        loopCheckBox.addActionListener(new LoopCheckBoxActionListener(loopCheckBox, track));
 
         JPanel volumePanel = new JPanel();
         JLabel volumeLabel = new JLabel("Volume", JLabel.CENTER);

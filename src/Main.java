@@ -62,7 +62,8 @@ public class Main {
         pushButtonMaster.addActionListener(new PushFromMasterButtonActionListener(f, trackMaster, track1,track2,track3,track4));
         saveButtonMaster.addActionListener(new SaveButtonActionListener(trackMaster));
         openButtonMaster.addActionListener(new OpenButtonActionListener(trackMaster));
-
+        loopMaster.addActionListener(new LoopCheckBoxActionListener(loopMaster,trackMaster));
+        
         JPanel trackPanelMaster = new JPanel();
         trackPanelMaster.setLayout(new BoxLayout(trackPanelMaster, 0));
         trackPanelMaster.setBackground(Color.WHITE);
