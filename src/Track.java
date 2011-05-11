@@ -22,6 +22,7 @@ public class Track extends Canvas {
     public long startPlayTime;
     public double percentDone = 0.0;
     private float volume;
+    private boolean isLooping = false;
 
     public Track(String name) {
         this.name = name;
@@ -82,14 +83,14 @@ public class Track extends Canvas {
             audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
                     audioData.length / audioFormat.getFrameSize());
             DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
-    	    clip = (Clip) AudioSystem.getLine(info);
-    	    clip.open(audioInputStream);
+            clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audioInputStream);
 
             //if checked
-    	    //clip.loop(clip.LOOP_CONTINUOUSLY);
-    		
-    	    //if unchecked
-    	    clip.start();
+            //clip.loop(clip.LOOP_CONTINUOUSLY);
+            
+            //if unchecked
+            clip.start();
 
         } catch (LineUnavailableException lue) {
             lue.printStackTrace();
@@ -98,7 +99,7 @@ public class Track extends Canvas {
     }
 
     public void resume(){
-    	clip.loop(clip.LOOP_CONTINUOUSLY);
+        clip.loop(clip.LOOP_CONTINUOUSLY);
     }
 
     public void stopPlay() {
@@ -125,41 +126,41 @@ public class Track extends Canvas {
     }
 
     public void setVolume(int newVol) {
-    	volume = (float) newVol;	
+        volume = (float) newVol;    
     }
     
     public float getVolume() {
-    	return volume;
+        return volume;
     }
 
     public void save(File file) throws IOException{
-    	AudioInputStream audioInputStream;
-    	byte[] audioData = new byte[10000];
-    	audioData = byteArrayOutputStream.toByteArray();
-    	InputStream byteArrayInputStream = new ByteArrayInputStream(audioData);
+        AudioInputStream audioInputStream;
+        byte[] audioData = new byte[10000];
+        audioData = byteArrayOutputStream.toByteArray();
+        InputStream byteArrayInputStream = new ByteArrayInputStream(audioData);
         AudioFormat audioFormat = getAudioFormat();
         audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
-        	audioData.length / audioFormat.getFrameSize());
-	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
-	AudioSystem.write(audioInputStream, fileType, file);
+            audioData.length / audioFormat.getFrameSize());
+    AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
+    AudioSystem.write(audioInputStream, fileType, file);
     }
-	
+    
     public void open(File f) throws IOException{
-	try{
-	        File audioFile = new File("track.wav");
-      		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
-      		byte[] audioData = new byte[10000];
-      		//write data from audioInputStream to byteArrayOutputStream
-      		int count;
-      		while (( count = audioInputStream.read(audioData, 0, audioData.length)) != -1)
-      		{
-      			if (count > 0)
-      				byteArrayOutputStream.write(audioData, 0, count);
-      		}
-	}catch(UnsupportedAudioFileException uafe){
-      		uafe.printStackTrace();
-      		}
-	}
+    try{
+            File audioFile = new File("track.wav");
+              AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
+              byte[] audioData = new byte[10000];
+              //write data from audioInputStream to byteArrayOutputStream
+              int count;
+              while (( count = audioInputStream.read(audioData, 0, audioData.length)) != -1)
+              {
+                  if (count > 0)
+                      byteArrayOutputStream.write(audioData, 0, count);
+              }
+    }catch(UnsupportedAudioFileException uafe){
+              uafe.printStackTrace();
+              }
+    }
 
     public void pause() {
         paused = true;
@@ -199,5 +200,13 @@ public class Track extends Canvas {
         boolean isSigned = true;
         boolean bigEndian = false;
         return new AudioFormat(sampleRate, sampleSizeInBits, channels, isSigned, bigEndian);
+    }
+    
+    public boolean isLooping(){
+        return isLooping;
+    }
+    
+    public void setLooping(boolean isLooping){
+        this.isLooping = isLooping;
     }
 }
