@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.media.j3d.Clip;
+
 
 public class PauseButtonActionListener implements ActionListener {
 	Track track;
@@ -9,10 +11,13 @@ public class PauseButtonActionListener implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(track.isLooping())
-                    track.clip.stop();
-		else
-		    track.pause();
+		
+		
+		track.clip.stop();
+		 
+		
+		
+		
 	}
 
 }

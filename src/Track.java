@@ -32,6 +32,7 @@ public class Track extends Canvas {
         this.repaint();
     }
 
+    
     public void rename(String s) {
         name = s;
         this.repaint();
@@ -69,9 +70,8 @@ public class Track extends Canvas {
         isRecording = false;
     }
 
-    public void startPlay() throws IOException {
+    public void initClip() throws IOException {
         isPlaying = true;
-        paused = false;
         byte[] audioData = new byte[10000];
         SourceDataLine sourceDataLine;
         AudioInputStream audioInputStream;
@@ -82,34 +82,40 @@ public class Track extends Canvas {
             AudioFormat audioFormat = getAudioFormat();
             audioInputStream = new AudioInputStream(byteArrayInputStream, audioFormat,
                     audioData.length / audioFormat.getFrameSize());
-
-            if (isLooping){        	
-            	DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
-                clip = (Clip) AudioSystem.getLine(info);
-                clip.open(audioInputStream);
-            	clip.loop(Clip.LOOP_CONTINUOUSLY);
-            }
- 
-            else{
-            	 DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
-                 sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
-                 sourceDataLine.open(audioFormat);
-                 sourceDataLine.start();
-
-                 // Create a thread to startPlay back the data
-                 Thread playThread = new PlayThread(audioInputStream, sourceDataLine, this);
-                 playThread.start();
-            }
+            DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
+            clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audioInputStream);
+           
 
         } catch (LineUnavailableException lue) {
             lue.printStackTrace();
         }
-
+        
+        
+    }
+    public void startPlay() throws IOException {
+    	 
+        if (isLooping){  
+        	clip.setFramePosition(0);
+        	clip.loop(Clip.LOOP_CONTINUOUSLY);
+        	FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volume.setValue(getVolume());
+        }
+        else{
+             clip.setFramePosition(0);
+        	 clip.start();           	 
+        	 FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+             volume.setValue(getVolume());
+        } 
+        
+        
+    }
+    
+    public void setVolume(){
+    	
     }
 
-    public void resume(){
-        clip.loop(clip.LOOP_CONTINUOUSLY);
-    }
+    
 
     public void stopPlay() {
         isPlaying = false;
@@ -135,11 +141,14 @@ public class Track extends Canvas {
     }
 
     public void setVolume(int newVol) {
-        volume = (float) newVol;    
+    	FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        volume.setValue(getVolume());
     }
     
     public float getVolume() {
-        return volume;
+        
+    	return volume;
+        
     }
 
     public void save(File file) throws IOException{
@@ -156,8 +165,8 @@ public class Track extends Canvas {
     
     public void open(File f) throws IOException{
     try{
-            File audioFile = new File("track.wav");
-              AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
+           	 byteArrayOutputStream.reset();
+              AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(f);
               byte[] audioData = new byte[10000];
               //write data from audioInputStream to byteArrayOutputStream
               int count;
@@ -169,6 +178,7 @@ public class Track extends Canvas {
     }catch(UnsupportedAudioFileException uafe){
               uafe.printStackTrace();
               }
+    		this.initClip();
     }
 
     public void pause() {

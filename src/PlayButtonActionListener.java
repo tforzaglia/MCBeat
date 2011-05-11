@@ -9,15 +9,20 @@ public class PlayButtonActionListener implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-                try{
-                	if(track.isLooping())
-                		track.resume();
-                	else
-                		track.startPlay();
+		track.stopPlay();
+		
+		if(!track.clip.isRunning())  
+        	try {
+				track.startPlay();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
+						
                 		
-                }catch(IOException ioe) {
-            		ioe.printStackTrace();
-                }
+                
 	}
 
 }

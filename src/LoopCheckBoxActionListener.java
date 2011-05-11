@@ -26,8 +26,6 @@ public class LoopCheckBoxActionListener  implements ActionListener{
         if(!lcb.isSelected()){
             track.setLooping(false);
         }
-        System.out.println(track.isLooping());
-
     }
 
 

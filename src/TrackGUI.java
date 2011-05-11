@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
@@ -8,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JCheckBox;
 
@@ -61,6 +63,7 @@ public class TrackGUI {
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(stopRecButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        trackPanel.add(new JSeparator(JSeparator.VERTICAL),BorderLayout.LINE_START);
         trackPanel.add(playButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(pauseButton);
