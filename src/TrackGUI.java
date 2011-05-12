@@ -15,13 +15,15 @@ import javax.swing.JCheckBox;
 
 /**
  *
- * @author Mazuoyan
+ * class to set up the tracks with buttons and action listeners
  */
+
 public class TrackGUI {
     private JPanel trackPanel  = new JPanel();
 
     public TrackGUI(Track track, Track trackMaster){
 
+        //add buttons and checkbox to track display 
         JButton playButton = new JButton(new ImageIcon("sketchBlackPlay.png"));
         JButton stopRecButton = new JButton(new ImageIcon("sketchBlackStop.png"));
         JButton recordButton = new JButton(new ImageIcon("sketchBlackRecord.png"));
@@ -33,10 +35,12 @@ public class TrackGUI {
         JButton renameButton = new JButton(new ImageIcon("sketchBlackRename.png"));
         JCheckBox loopCheckBox = new JCheckBox("Loop");
         
+        //add the volume slider to track display
         JSlider volume = new JSlider();
         volume.setMaximum(7);
         volume.setMinimum(-15);
         
+        //add action listeners to buttons, sliders, and checkboxes
         pauseButton.addActionListener(new PauseButtonActionListener(track));
         playButton.addActionListener(new PlayButtonActionListener(track));
         recordButton.addActionListener(new RecordButtonActionListener(track));
