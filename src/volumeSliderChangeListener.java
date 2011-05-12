@@ -5,8 +5,9 @@ import javax.swing.event.ChangeListener;
 
 /**
  *
- * @author Mazuoyan
+ * change listener to make the volume of the playback louder or lower
  */
+
 class VolumeSliderChangeListener implements ChangeListener{
     Track track;
     JSlider vol;
@@ -19,7 +20,4 @@ class VolumeSliderChangeListener implements ChangeListener{
         System.out.println(vol.getValue());
         track.setVolume(vol.getValue());
     }
-
-
-
 }
