@@ -1,3 +1,5 @@
+package mcbea;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -139,6 +141,7 @@ public class Track extends Canvas {
             }
             byteArrayOutputStream.write(master);
         }
+        initClip();
     }
  
     //method to set volume 
@@ -210,8 +213,9 @@ public class Track extends Canvas {
     }
 
     //method to clear a track by resetting its output stream
-    public void clearTrack() {
+    public void clearTrack() throws IOException {
         byteArrayOutputStream.reset();
+        this.initClip();
     }
 
     //method to manipulate the color of the track display
@@ -219,7 +223,7 @@ public class Track extends Canvas {
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Courier", Font.PLAIN, 18));
-        g.drawString(this.getName(), 100, 45);
+        g.drawString(this.getName(), 100, 35);
         if(isPlaying){
             //set track to a new color when it is playing
             g.setColor(new Color(150,200,132,45));
