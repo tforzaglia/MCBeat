@@ -5,8 +5,9 @@ import java.awt.Graphics;
 
 /**
  *
- * @author Mazuoyan
+ * class to display the tracks set up by the TrackGUI class
  */
+
 public class TrackDisplay extends Canvas {
     private Track track;
 
@@ -20,7 +21,6 @@ public class TrackDisplay extends Canvas {
 
     @Override
     public void paint(Graphics g){
-
         g.setFont(new Font("Courier", Font.PLAIN,  18));
         g.drawString(track.getName(), 5, 25);
     }
