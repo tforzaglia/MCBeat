@@ -5,6 +5,11 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+*
+* action listener to push audio from master track to one of the other tracks
+* 
+*/
 
 public class PushFromMasterButtonActionListener implements ActionListener {
 	
@@ -26,6 +31,7 @@ public class PushFromMasterButtonActionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+                //store possibilities to push the master track to in an array
 		Object[] possibilities = {track1.getName(), track2.getName(), track3.getName(), track4.getName()};
 		String s = (String)JOptionPane.showInputDialog(
 		                    f,
@@ -36,45 +42,52 @@ public class PushFromMasterButtonActionListener implements ActionListener {
 		                    possibilities,
 		                    track1.getName());
 
-		//If a string was returned, say so.
+		//if a string was returned, say so.
 		if ((s != null) && (s.length() > 0)) {
+                    //track 1 was selected by user
 		    if(s.equals(track1.getName())){
+                        //clear the selected track
 		    	track1.clearTrack();
 		    	try {
-					track1.addTrack(master);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+                                //add master track to selected track
+				track1.addTrack(master);
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
 				}
 		    }
+                    //track 2 was selected by the user
 		    else if (s.equals(track2.getName())){
+                        //clear the selected track
 		    	track2.clearTrack();
 		    	try {
-					track2.addTrack(master);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+                                //add master track to selected track
+				track2.addTrack(master);
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
 				}
 		    }
+                    //track 3 was selected by the user
 		    else if(s.equals(track3.getName())){
+                        //clear the selected track
 		    	track3.clearTrack();
 		    	try {
-					track3.addTrack(master);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+                                //add master track to selected track
+				track3.addTrack(master);
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
 				}
 		    }
+                    //track 4 was selected by the user
 		    else {
+                        //clear the selected track
 		    	track4.clearTrack();
 		    	try {
-					track4.addTrack(master);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+                                //add master track to selected track
+				track4.addTrack(master);
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			        }
 		    }
 		}
-	}
-	
+	}	
 }
