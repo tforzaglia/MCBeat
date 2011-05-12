@@ -3,8 +3,9 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Mazuoyan
+ * action listener to clear the audio data from a track when the trash button is clicked
  */
+
 class ClearButtonActionListener implements ActionListener{
     Track master;
     public ClearButtonActionListener(Track master) {
@@ -12,7 +13,7 @@ class ClearButtonActionListener implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
+        //clear the track by calling the track's clearTrack method
         master.clearTrack();
     }
-
 }
