@@ -40,6 +40,9 @@ public class Main {
         f.setJMenuBar(menuBar);
         JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
+        JMenuItem addTrack = new JMenuItem("Add a New Track...");
+        fileMenu.add(addTrack);
+        //addTrack.addActionListener(new AddTrackActionListener());
         JMenuItem exit = new JMenuItem("Exit");
         fileMenu.add(exit);
         exit.addActionListener(new CloseWindow());

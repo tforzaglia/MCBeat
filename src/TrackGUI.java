@@ -32,6 +32,7 @@ public class TrackGUI {
         JButton openButton = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
         JButton renameButton = new JButton(new ImageIcon("sketchBlackRename.png"));
         JCheckBox loopCheckBox = new JCheckBox("Loop");
+        JButton removeTrackButton = new JButton(new ImageIcon("sketchBlackRemoveTrack.png"));
         
         JSlider volume = new JSlider();
         volume.setMaximum(7);
@@ -48,6 +49,7 @@ public class TrackGUI {
         renameButton.addActionListener(new RenameButtonActionListener(track));
         volume.addChangeListener(new VolumeSliderChangeListener(track, volume));
         loopCheckBox.addActionListener(new LoopCheckBoxActionListener(loopCheckBox, track));
+        //removeTrackButton.addActionListener(new RemoveTrackButtonActionListener(track));
 
         JPanel volumePanel = new JPanel();
         JLabel volumeLabel = new JLabel("Volume", JLabel.CENTER);
@@ -62,8 +64,9 @@ public class TrackGUI {
         trackPanel.add(recordButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(stopRecButton);
-        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        trackPanel.add(Box.createRigidArea(new Dimension(10,0)));
         trackPanel.add(new JSeparator(JSeparator.VERTICAL),BorderLayout.LINE_START);
+        trackPanel.add(Box.createRigidArea(new Dimension(10,0)));
         trackPanel.add(playButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(pauseButton);
@@ -82,6 +85,7 @@ public class TrackGUI {
         trackPanel.add(openButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(deleteButton);
+        trackPanel.add(removeTrackButton);
 
     }
 
