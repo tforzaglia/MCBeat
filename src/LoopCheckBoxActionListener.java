@@ -2,15 +2,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
- * @author bmerriman.student
+ * class to control looping of tracks through checkboxes
  */
+
 public class LoopCheckBoxActionListener  implements ActionListener{
     private Track track;
     private JCheckBox lcb;
@@ -20,14 +16,13 @@ public class LoopCheckBoxActionListener  implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent ae) {
+        //when box is checked, enable looping
         if(lcb.isSelected()){
             track.setLooping(true);
         }
+        //if box is checked, don't loop
         if(!lcb.isSelected()){
             track.setLooping(false);
         }
     }
-
-
-
 }

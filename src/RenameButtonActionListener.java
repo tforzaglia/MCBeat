@@ -4,6 +4,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+/**
+*
+* action listener to rename a track
+* 
+*/
 
 public class RenameButtonActionListener implements ActionListener {
 	
@@ -15,8 +20,8 @@ public class RenameButtonActionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-      String name = (String) JOptionPane.showInputDialog(new Frame() ,"Enter a name for the track", null);
-      track.rename(name);
+            //pop up dialog box to enter a new name for the track
+            String name = (String) JOptionPane.showInputDialog(new Frame() ,"Enter a name for the track", null);
+            track.rename(name);
 	}
-
 }

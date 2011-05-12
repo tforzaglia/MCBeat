@@ -8,6 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
+/**
+*
+* action listener to save a track as a .wav file
+* 
+*/
+
 public class SaveButtonActionListener implements ActionListener {
 
     final Track track;
@@ -20,6 +26,7 @@ public class SaveButtonActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        //pop up a dialog to choose save location and name for file
         fc.setDialogType(JFileChooser.SAVE_DIALOG);
         int ret = fc.showDialog(null, "Save file");
         fc.setVisible(true);
@@ -30,10 +37,5 @@ public class SaveButtonActionListener implements ActionListener {
                 Logger.getLogger(SaveButtonActionListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-
-
-
-
     }
 }

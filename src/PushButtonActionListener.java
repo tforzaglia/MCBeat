@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+*
+* action listener to add a track to the master track
+* 
+*/
+
 public class PushButtonActionListener implements ActionListener {
 
     Track track;

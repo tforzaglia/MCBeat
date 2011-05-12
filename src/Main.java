@@ -19,23 +19,27 @@ import javax.swing.JCheckBox;
 
 /**
  *
- * @author bmerriman.student
+ * main driver class for the MCBE@ application
+ *  sets up frame, menu bar
+ *  creates track objects and master track
  */
+
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+
+        //create the 4 initial track objects and the master track
         Track track1 = new Track("Track 1");
         Track track2 = new Track("Track 2");
         Track track3 = new Track("Track 3");
         Track track4 = new Track("Track 4");
         Track trackMaster = new Track("Master");
 
-
+        //create the frame for the GUI
         JFrame f = new JFrame("MCBE@");
         f.setResizable(false);
+
+        //add exit option to the menu
         JMenuBar menuBar = new JMenuBar();
         f.setJMenuBar(menuBar);
         JMenu fileMenu = new JMenu("File");
@@ -50,7 +54,7 @@ public class Main {
         content.setBackground(Color.white);
         content.setLayout(new FlowLayout());
 
-
+        //add buttons and checkbox for the master track
         JButton playButtonMaster = new JButton(new ImageIcon("sketchBlackPlay.png"));
         JButton pauseButtonMaster = new JButton(new ImageIcon("sketchBlackPause.png"));
         JButton clearButtonMaster = new JButton(new ImageIcon("sketchBlackTrashClear.png"));
@@ -59,6 +63,7 @@ public class Main {
         JButton pushButtonMaster = new JButton(new ImageIcon("sketchBlackPush.png"));
         JCheckBox loopMaster = new JCheckBox("Loop");
 
+        //add action listeners for the master track
         playButtonMaster.addActionListener(new PlayButtonActionListener(trackMaster));
         pauseButtonMaster.addActionListener(new PauseButtonActionListener(trackMaster));
         clearButtonMaster.addActionListener(new ClearButtonActionListener(trackMaster));
@@ -67,6 +72,7 @@ public class Main {
         openButtonMaster.addActionListener(new OpenButtonActionListener(trackMaster));
         loopMaster.addActionListener(new LoopCheckBoxActionListener(loopMaster,trackMaster));
         
+        //set up the master track layout
         JPanel trackPanelMaster = new JPanel();
         trackPanelMaster.setLayout(new BoxLayout(trackPanelMaster, 0));
         trackPanelMaster.setBackground(Color.WHITE);
