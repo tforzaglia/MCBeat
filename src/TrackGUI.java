@@ -27,7 +27,7 @@ public class TrackGUI {
         JButton playButton = new JButton(new ImageIcon("sketchBlackPlay.png"));
         JButton stopRecButton = new JButton(new ImageIcon("sketchBlackStop.png"));
         JButton recordButton = new JButton(new ImageIcon("sketchBlackRecord.png"));
-        JButton pauseButton = new JButton(new ImageIcon("sketchBlackPause.png"));
+        JButton pauseButton = new JButton(new ImageIcon("sketchBlackStop.png"));
         JButton pushButton = new JButton(new ImageIcon("sketchBlackPush.png"));
         JButton deleteButton = new JButton(new ImageIcon("sketchBlackTrashClear.png"));
         JButton saveButton = new JButton(new ImageIcon("sketchBlackSaveFile.png"));

@@ -47,7 +47,12 @@ public class PushFromMasterButtonActionListener implements ActionListener {
                     //track 1 was selected by user
 		    if(s.equals(track1.getName())){
                         //clear the selected track
-		    	track1.clearTrack();
+		    	try {
+					track1.clearTrack();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		    	try {
                                 //add master track to selected track
 				track1.addTrack(master);
@@ -58,7 +63,12 @@ public class PushFromMasterButtonActionListener implements ActionListener {
                     //track 2 was selected by the user
 		    else if (s.equals(track2.getName())){
                         //clear the selected track
-		    	track2.clearTrack();
+		    	try {
+					track2.clearTrack();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		    	try {
                                 //add master track to selected track
 				track2.addTrack(master);
@@ -69,7 +79,12 @@ public class PushFromMasterButtonActionListener implements ActionListener {
                     //track 3 was selected by the user
 		    else if(s.equals(track3.getName())){
                         //clear the selected track
-		    	track3.clearTrack();
+		    	try {
+					track3.clearTrack();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		    	try {
                                 //add master track to selected track
 				track3.addTrack(master);
@@ -80,7 +95,12 @@ public class PushFromMasterButtonActionListener implements ActionListener {
                     //track 4 was selected by the user
 		    else {
                         //clear the selected track
-		    	track4.clearTrack();
+		    	try {
+					track4.clearTrack();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		    	try {
                                 //add master track to selected track
 				track4.addTrack(master);

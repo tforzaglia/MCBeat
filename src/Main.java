@@ -56,7 +56,7 @@ public class Main {
 
         //add buttons and checkbox for the master track
         JButton playButtonMaster = new JButton(new ImageIcon("sketchBlackPlay.png"));
-        JButton pauseButtonMaster = new JButton(new ImageIcon("sketchBlackPause.png"));
+        JButton pauseButtonMaster = new JButton(new ImageIcon("sketchBlackStop.png"));
         JButton clearButtonMaster = new JButton(new ImageIcon("sketchBlackTrashClear.png"));
         JButton saveButtonMaster = new JButton(new ImageIcon("sketchBlackSaveFile.png"));
         JButton openButtonMaster = new JButton(new ImageIcon("sketchBlackOpenFile.png"));
