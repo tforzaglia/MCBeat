@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.media.j3d.Clip;
  
 /**
  * action listener to stop a track when the pause button is pressed

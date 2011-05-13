@@ -3,6 +3,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.Vector;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -20,8 +21,7 @@ import javax.swing.JCheckBox;
 
 public class TrackGUI {
     private JPanel trackPanel  = new JPanel();
-
-    public TrackGUI(Track track, Track trackMaster){
+    public TrackGUI(Track track, Vector<Track> tracks, GUIUpdater guiUpdater){
 
         //add buttons and checkbox to track display 
         JButton playButton = new JButton(new ImageIcon("sketchBlackPlay.png"));
@@ -46,14 +46,14 @@ public class TrackGUI {
         playButton.addActionListener(new PlayButtonActionListener(track));
         recordButton.addActionListener(new RecordButtonActionListener(track));
         stopRecButton.addActionListener(new StopRecButtonActionListener(track));
-        pushButton.addActionListener(new PushButtonActionListener(track, trackMaster));
+        pushButton.addActionListener(new PushFromMasterButtonActionListener(track, tracks));
         deleteButton.addActionListener(new ClearButtonActionListener(track));
         saveButton.addActionListener(new SaveButtonActionListener(track));
         openButton.addActionListener(new OpenButtonActionListener(track));
         renameButton.addActionListener(new RenameButtonActionListener(track));
         volume.addChangeListener(new VolumeSliderChangeListener(track, volume));
         loopCheckBox.addActionListener(new LoopCheckBoxActionListener(loopCheckBox, track));
-        //removeTrackButton.addActionListener(new RemoveTrackButtonActionListener(track));
+        removeTrackButton.addActionListener(new RemoveTrackButtonActionListener(track, tracks, guiUpdater));
 
         JPanel volumePanel = new JPanel();
         JLabel volumeLabel = new JLabel("Volume", JLabel.CENTER);
