@@ -78,8 +78,8 @@ public class TrackGUI {
         trackPanel.add(loopCheckBox);
         trackPanel.add(track);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
-        trackPanel.add(volumePanel);
-        trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
+       // trackPanel.add(volumePanel);
+       // trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(renameButton);
         trackPanel.add(Box.createRigidArea(new Dimension(5,0)));
         trackPanel.add(pushButton);
